@@ -28,9 +28,7 @@
       z-index: -1;
       inset: 0;
       content: "";
-      background:
-        linear-gradient(180deg, rgba(10, 12, 11, 0.78), rgba(10, 12, 11, 0.9)),
-        url("https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718");
+      background: url("/images/home/background.png");
       background-position: center, center 35%;
       background-size: cover, cover;
       filter: saturate(0.7);
@@ -468,7 +466,7 @@
       z-index: -1;
       inset: 0;
       content: "";
-      background: linear-gradient(0deg, rgba(5, 8, 6, 0.88), transparent 78%);
+      background: linear-gradient(90deg, rgba(5, 8, 6, 0.82), transparent 78%);
     }
 
     .category-card:hover {
@@ -477,33 +475,65 @@
     }
 
     .category-card--items {
-      background:
-        radial-gradient(ellipse at 75% 25%, rgba(198, 155, 91, 0.55), transparent 48%),
-        linear-gradient(145deg, #5c4932, #202a23 78%);
+      background: #352a27;
+    }
+
+    .category-card--items::before {
+      background: linear-gradient(270deg, rgba(5, 8, 6, 0.82), transparent 78%);
     }
 
     .category-card--badges {
-      background:
-        radial-gradient(ellipse at 75% 25%, rgba(181, 228, 140, 0.48), transparent 48%),
-        linear-gradient(145deg, #3e5944, #202a23 78%);
+      background: #312c24;
     }
 
-    .category-art {
+    .category-card-photo {
       position: absolute;
-      z-index: -1;
-      top: 24px;
-      right: 28px;
-      width: 112px;
-      height: 112px;
-      color: rgba(242, 240, 218, 0.82);
-      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge-card-art {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+    }
+
+    .badge-card-art .category-card-photo {
+      z-index: 0;
+    }
+
+    .badge-card-decoration {
+      position: absolute;
+      z-index: 1;
+      width: 14%;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    .badge-card-decoration--left {
+      top: 8%;
+      left: 16%;
+    }
+
+    .badge-card-decoration--right {
+      top: 8%;
+      right: 16%;
+    }
+
+    .badge-card-decoration--center {
+      bottom: 1%;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .category-card h2,
     .steam-card h2,
     .community-footer h2 {
       margin: 0;
-      font-family: "Bangers", cursive;
+      font-family: "Darumadrop One", cursive;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 400;
       letter-spacing: 0.045em;
@@ -511,82 +541,179 @@
       text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
     }
 
-    .steam-card {
+    .category-card--items h2 {
+      width: 100%;
+      text-align: right;
+    }
+
+    .steam-section {
       position: relative;
       display: flex;
-      min-height: 260px;
-      align-items: flex-end;
       width: 100%;
-      overflow: hidden;
-      padding: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 22px;
-      background: #273128;
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
-      isolation: isolate;
+      justify-content: center;
+      padding: 8px 0 0;
     }
 
-    .steam-card > img {
-      position: absolute;
-      z-index: -2;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 42%;
-    }
-
-    .steam-card::after {
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      content: "";
-      background: linear-gradient(90deg, rgba(7, 10, 8, 0.94), rgba(7, 10, 8, 0.55) 60%, rgba(7, 10, 8, 0.2));
-    }
-
-    .steam-content {
+    .steam-publishers {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-      max-width: 560px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .steam-content p,
-    .community-footer p {
+    .steam-publisher {
+      width: clamp(72px, 16vw, 190px);
+      max-height: 190px;
+      object-fit: contain;
+    }
+
+    .steam-link {
+      position: relative;
+      display: flex;
+      min-height: 152px;
+      align-items: center;
+      width: min(624px, 68%);
+      overflow: visible;
+      padding: 24px 150px 24px 36px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #0c1a2f 25.728%, #103c65);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
+      color: #fff;
+      text-decoration: none;
+      transition: transform 160ms ease, filter 160ms ease;
+    }
+
+    .steam-link:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.12);
+      color: #fff;
+    }
+
+    .steam-link > span {
+      width: 100%;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1.4rem, 3.8vw, 3rem);
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .steam-link > img {
+      position: absolute;
+      top: -14px;
+      right: 3%;
+      width: clamp(90px, 15vw, 195px);
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    .steam-quote {
+      position: absolute;
+      width: clamp(42px, 7vw, 92px);
+      height: auto;
+      pointer-events: none;
+    }
+
+    .steam-quote--left {
+      top: -42px;
+      left: 10%;
+      transform: rotate(160deg) scaleY(-1);
+    }
+
+    .steam-quote--right {
+      right: 8%;
+      bottom: -34px;
+      transform: rotate(20deg);
+    }
+
+    .game-overview,
+    .community-preview {
+      display: flex;
+      width: min(758px, 100%);
+      align-items: center;
+      gap: 24px;
+      border-radius: 30px;
+      background: rgba(172, 172, 172, 0.3);
+    }
+
+    .game-overview {
+      position: relative;
+      min-height: 343px;
+      padding: 48px 24px 24px;
+    }
+
+    .game-overview-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .game-overview h2,
+    .community-preview h2 {
+      margin: 0 0 14px;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.05;
+      text-align: center;
+      text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .game-overview p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.83);
-      font-size: 1rem;
-      line-height: 1.6;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1rem, 2.1vw, 1.75rem);
+      line-height: 1.18;
+      text-align: justify;
     }
 
-    .placeholder-button {
-      display: inline-flex;
-      min-height: 48px;
+    .game-overview-image {
+      width: 44%;
+      min-height: 220px;
+      max-height: 286px;
+      align-self: stretch;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+
+    .community-preview {
+      min-height: 249px;
+      padding: 24px;
+    }
+
+    .community-preview-image {
+      width: 47%;
+      min-height: 170px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+
+    .community-preview-copy {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      border-radius: 10px;
-      background: #f3f0d7;
-      color: #171917;
-      cursor: pointer;
-      font-family: "Bangers", cursive;
-      font-size: 1.25rem;
-      letter-spacing: 0.04em;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .community-preview-copy > span {
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1.3rem, 3vw, 2.5rem);
       line-height: 1;
-      transition: transform 160ms ease, background-color 160ms ease;
     }
 
-    .placeholder-button:hover {
-      transform: translateY(-2px);
-      background: #dcebc8;
+    .community-preview h2 {
+      margin: 0;
     }
 
-    .placeholder-status {
-      min-height: 1.4em;
-      color: #dcebc8;
-      font-size: 0.9rem;
+    .community-preview-copy > img {
+      position: absolute;
+      right: 2%;
+      bottom: -28px;
+      width: clamp(44px, 7vw, 92px);
+      transform: rotate(160deg) scaleY(-1);
     }
 
     .community-footer {
@@ -673,6 +800,13 @@
       font-family: "Darumadrop One", cursive;
       text-align: center;
       cursor: pointer;
+      text-decoration: none;
+      transition: transform 160ms ease;
+    }
+
+    .creator-card:hover {
+      transform: translateY(-3px);
+      color: #fff;
     }
 
     .creator-card > img {
@@ -831,20 +965,38 @@
         padding: 24px;
       }
 
-      .category-art {
-        top: 18px;
-        right: 20px;
-        width: 96px;
-        height: 96px;
+      .steam-link {
+        min-height: 112px;
+        padding: 18px 88px 18px 20px;
+        border-radius: 22px;
       }
 
-      .steam-card {
-        min-height: 300px;
-        padding: 24px;
+      .steam-publishers {
+        gap: 10px;
       }
 
-      .steam-card::after {
-        background: linear-gradient(0deg, rgba(7, 10, 8, 0.95), rgba(7, 10, 8, 0.32));
+      .game-overview,
+      .community-preview {
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .game-overview {
+        min-height: 0;
+        padding: 44px 18px 18px;
+      }
+
+      .game-overview-image {
+        min-height: 180px;
+      }
+
+      .community-preview {
+        min-height: 0;
+        padding: 18px;
+      }
+
+      .community-preview-image {
+        min-height: 140px;
       }
 
       .community-footer {
@@ -883,6 +1035,41 @@
         flex: 1;
         max-width: none;
         font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .game-overview,
+      .community-preview {
+        flex-direction: column;
+      }
+
+      .game-overview-image,
+      .community-preview-image {
+        width: 100%;
+        max-height: 230px;
+        min-height: 190px;
+      }
+
+      .steam-publisher {
+        width: 18%;
+      }
+
+      .steam-link {
+        min-height: 96px;
+        width: 70%;
+        padding: 14px 64px 14px 12px;
+        border-radius: 18px;
+      }
+
+      .steam-link > img {
+        top: -8px;
+        right: -2%;
+        width: clamp(68px, 20vw, 98px);
+      }
+
+      .steam-quote {
+        display: none;
       }
     }
 

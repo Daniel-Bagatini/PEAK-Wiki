@@ -1,6 +1,7 @@
 package Trabalho.Web;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,13 +36,68 @@ class WebApplicationTests {
 				.andExpect(view().name("index"))
 				.andExpect(content().string(containsString("Fórum da Comunidade")))
 				.andExpect(content().string(containsString("/biomas/costa")))
+				.andExpect(content().string(containsString("href=\"/insignias\"")))
 				.andExpect(content().string(containsString("/css/site.css")))
 				.andExpect(content().string(containsString("/images/biome-pages/costa/imgImage3.png")))
+				.andExpect(content().string(containsString("/images/home/card-biomes.png")))
+				.andExpect(content().string(containsString("/images/home/card-items.png")))
+				.andExpect(content().string(containsString("/images/home/card-badges.png")))
+				.andExpect(content().string(containsString("Sobre o jogo")))
+				.andExpect(content().string(containsString("jogo cooperativo de escalada")))
+				.andExpect(content().string(containsString("href=\"https://store.steampowered.com/app/3527290/PEAK/\"")))
+				.andExpect(content().string(containsString("/images/home/steam-icon.png")))
 				.andExpect(content().string(containsString("Siga os criadores da página no Discord")))
 				.andExpect(content().string(containsString("Rogwerz")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("brand-arrow"))))
 				.andExpect(content().string(containsString("biome-slide-name")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("biome-description"))));
+	}
+
+	@Test
+	void rendersSharedFooterDiscordLinksOnEveryPage() throws Exception {
+		String[] routes = {
+				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/itens/comidas",
+				"/itens/equipamentos", "/insignias"
+		};
+		String[] profileLinks = {
+				"https://discord.com/users/563476359222132737",
+				"https://discord.com/users/758117711925739590"
+		};
+
+		for (String route : routes) {
+			MvcResult page = mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andExpect(content().string(containsString("Perfil de Denions220 no Discord")))
+					.andExpect(content().string(containsString("Perfil de .Henry_006. no Discord")))
+					.andExpect(content().string(containsString("Perfil de Lulu no Discord")))
+					.andExpect(content().string(containsString("Perfil de Rogwerz no Discord")))
+					.andReturn();
+			String html = page.getResponse().getContentAsString();
+			for (String profileLink : profileLinks) {
+				org.junit.jupiter.api.Assertions.assertTrue(html.contains("href=\"" + profileLink + "\""));
+			}
+		}
+	}
+
+	@Test
+	void servesLocalHomepageImages() throws Exception {
+		MvcResult page = mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andReturn();
+		Pattern imageSource = Pattern.compile("src=\"(/images/home/[^\"]+)\"");
+		Matcher matcher = imageSource.matcher(page.getResponse().getContentAsString());
+		int assetCount = 0;
+		while (matcher.find()) {
+			mockMvc.perform(get(matcher.group(1)))
+					.andExpect(status().isOk())
+					.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+			assetCount++;
+		}
+		assertEquals(14, assetCount);
+		mockMvc.perform(get("/images/home/background.png"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
 	}
 
 	@Test
@@ -121,6 +177,34 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("/images/items/equipamentos/imgImage219.png")))
 				.andExpect(content().string(containsString("--biome-background: url(/images/biome-pages/costa/imgImage167.png)")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
+	}
+
+	@Test
+	void rendersBadgesWithSharedLayoutAndLocalAssets() throws Exception {
+		MvcResult page = mockMvc.perform(get("/insignias"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("badges"))
+				.andExpect(content().string(containsString("Insígnias")))
+				.andExpect(content().string(containsString("Insígnia Florestal")))
+				.andExpect(content().string(containsString("Insígnia de Vulcanologia")))
+				.andExpect(content().string(containsString("Fórum da Comunidade")))
+				.andExpect(content().string(containsString("Siga os criadores da página no Discord")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))))
+				.andReturn();
+
+		String html = page.getResponse().getContentAsString();
+		assertEquals(24, html.split("class=\"badge-card\"").length - 1);
+
+		Pattern badgeImage = Pattern.compile("src=\"(/images/badges/[^\"]+)\"");
+		Matcher matcher = badgeImage.matcher(html);
+		int assetCount = 0;
+		while (matcher.find()) {
+			mockMvc.perform(get(matcher.group(1)))
+					.andExpect(status().isOk())
+					.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+			assetCount++;
+		}
+		assertEquals(30, assetCount);
 	}
 
 	@Test
