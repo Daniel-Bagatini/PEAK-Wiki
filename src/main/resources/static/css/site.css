@@ -1,0 +1,896 @@
+﻿:root {
+      color-scheme: dark;
+      font-family: "Nunito Sans", sans-serif;
+      background: #111312;
+      color: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      isolation: isolate;
+      background: #111312;
+      color: #fff;
+      font-family: "Nunito Sans", sans-serif;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(180deg, rgba(10, 12, 11, 0.78), rgba(10, 12, 11, 0.9)),
+        url("https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718");
+      background-position: center, center 35%;
+      background-size: cover, cover;
+      filter: saturate(0.7);
+    }
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+      min-height: 158px;
+      margin: 0;
+      padding: 20px max(5vw, 24px);
+      background: #1c1c1c;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      color: #fff;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .brand-art {
+      display: block;
+      width: min(25vw, 322px);
+      max-height: 98px;
+      object-fit: contain;
+    }
+
+    .brand-arrow {
+      display: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 54px;
+    }
+
+    .header-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      max-width: 200px;
+      padding: 12px 20px;
+      border: 1px solid #111;
+      border-radius: 10px;
+      background: #fff;
+      color: #171917;
+      font-family: "Darumadrop One", cursive;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 160ms ease, background-color 160ms ease;
+    }
+
+    .header-button:hover {
+      transform: translateY(-2px);
+      background: #e7f2df;
+    }
+
+    .header-button:focus-visible,
+    .brand:focus-visible,
+    .placeholder-button:focus-visible,
+    .category-card:focus-visible {
+      outline: 3px solid #b5e48c;
+      outline-offset: 4px;
+    }
+
+    .home-main {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+      width: min(100% - 48px, 1080px);
+      margin: 0 auto;
+      padding: clamp(48px, 9vh, 100px) 0 80px;
+    }
+
+    .home-title {
+      margin: 0;
+      padding: 14px 30px 12px;
+      border-radius: 20px;
+      background: #090a09;
+      color: #fff;
+      font-family: "Bangers", cursive;
+      font-size: clamp(2.75rem, 7vw, 5rem);
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .biomes-card {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      min-height: clamp(300px, 48vw, 500px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      background: #344038;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      isolation: isolate;
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .biomes-card img {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 300ms ease;
+    }
+
+    .biomes-card::after {
+      position: absolute;
+      z-index: -1;
+      inset: 25% 0 0;
+      content: "";
+      background: linear-gradient(transparent, rgba(5, 8, 6, 0.88));
+    }
+
+    .biomes-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .biomes-title {
+      margin: 0;
+      padding: 32px 38px;
+      color: #fff;
+      font-family: "Bangers", cursive;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .biomes-card:focus-visible {
+      outline: 3px solid #b5e48c;
+      outline-offset: 5px;
+    }
+
+    .biome-dialog {
+      position: fixed;
+      width: min(927px, calc(100vw - 24px));
+      height: min(643px, calc(100vh - 24px));
+      max-width: none;
+      max-height: none;
+      overflow: hidden;
+      padding: 0;
+      border: 1px solid #17130e;
+      border-radius: 30px;
+      background-color: #d2c4a6;
+      background-image:
+        radial-gradient(ellipse 24px 14px at 5% 14%, rgba(174, 143, 88, 0.35) 58%, transparent 62%),
+        radial-gradient(ellipse 15px 20px at 18% 7%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 26px 13px at 31% 19%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 17px 25px at 48% 8%, rgba(174, 143, 88, 0.32) 58%, transparent 62%),
+        radial-gradient(ellipse 22px 14px at 66% 15%, rgba(174, 143, 88, 0.32) 58%, transparent 62%),
+        radial-gradient(ellipse 13px 22px at 82% 7%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 25px 15px at 94% 19%, rgba(174, 143, 88, 0.33) 58%, transparent 62%),
+        radial-gradient(ellipse 16px 23px at 9% 78%, rgba(174, 143, 88, 0.28) 58%, transparent 62%),
+        radial-gradient(ellipse 23px 15px at 28% 91%, rgba(174, 143, 88, 0.32) 58%, transparent 62%),
+        radial-gradient(ellipse 14px 22px at 45% 80%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 24px 15px at 62% 93%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 16px 23px at 79% 81%, rgba(174, 143, 88, 0.3) 58%, transparent 62%),
+        radial-gradient(ellipse 25px 14px at 96% 91%, rgba(174, 143, 88, 0.32) 58%, transparent 62%);
+      color: #111;
+    }
+
+    .biome-dialog[open] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .biome-dialog::backdrop {
+      background: rgba(5, 7, 6, 0.76);
+      backdrop-filter: blur(5px);
+    }
+
+    .biome-dialog-frame {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .biome-dialog-header {
+      display: flex;
+      flex: 0 0 174px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 58px 0;
+    }
+
+    .biome-dialog-header h2 {
+      margin: 0;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(3.1rem, 8.5vw, 6.25rem);
+      font-weight: 400;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .biome-close {
+      position: absolute;
+      z-index: 3;
+      top: 12px;
+      right: 14px;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid rgba(0, 0, 0, 0.28);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      color: #211d16;
+      cursor: pointer;
+      font: 700 1.6rem/1 "Nunito Sans", sans-serif;
+    }
+
+    .biome-close:hover {
+      background: #fff;
+    }
+
+    .biome-carousel {
+      position: relative;
+      flex: 0 0 350px;
+      overflow: hidden;
+    }
+
+    .biome-track {
+      position: absolute;
+      top: 6px;
+      left: 14.4%;
+      display: flex;
+      gap: 67px;
+      width: max-content;
+      transition: transform 280ms ease;
+    }
+
+    .biome-slide {
+      position: relative;
+      display: block;
+      width: min(609px, calc(100vw - 142px));
+      aspect-ratio: 609 / 343;
+      overflow: hidden;
+      border-radius: 30px;
+      color: #fff;
+      isolation: isolate;
+      text-decoration: none;
+    }
+
+    .biome-slide img {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .biome-slide-name {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      color: #fff;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .biome-slide:focus-visible {
+      outline: 4px solid #ddca40;
+      outline-offset: -5px;
+    }
+
+    .biome-arrow {
+      position: absolute;
+      z-index: 2;
+      top: calc(50% - 34px);
+      display: grid;
+      width: 93px;
+      height: 93px;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      filter: drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.22));
+      transition: transform 160ms ease;
+    }
+
+    .biome-arrow:hover {
+      transform: scale(1.06);
+    }
+
+    .biome-arrow:focus-visible,
+    .biome-indicators button:focus-visible,
+    .biome-close:focus-visible {
+      outline: 3px solid #202116;
+      outline-offset: 3px;
+    }
+
+    .biome-arrow img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .biome-arrow--previous {
+      left: 14px;
+    }
+
+    .biome-arrow--next {
+      right: 14px;
+    }
+
+    .biome-arrow--next img {
+      transform: rotate(180deg);
+    }
+
+    .biome-indicators {
+      position: relative;
+      flex: 0 0 22px;
+      align-self: center;
+      width: 232px;
+      height: 22px;
+      margin: auto auto 18px;
+    }
+
+    .biome-indicators > img {
+      display: block;
+      width: 232px;
+      height: 22px;
+    }
+
+    .biome-indicator-current,
+    .biome-indicator-first {
+      position: absolute;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .biome-indicator-current {
+      left: 0;
+      background: #ddca40;
+      transition: transform 220ms ease;
+    }
+
+    .biome-indicator-first {
+      left: 0;
+      background: #9a9583;
+    }
+
+    .biome-indicators button {
+      position: absolute;
+      top: -6px;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .biome-indicators button:nth-of-type(1) { left: 0; }
+    .biome-indicators button:nth-of-type(2) { left: 35px; }
+    .biome-indicators button:nth-of-type(3) { left: 70px; }
+    .biome-indicators button:nth-of-type(4) { left: 105px; }
+    .biome-indicators button:nth-of-type(5) { left: 140px; }
+    .biome-indicators button:nth-of-type(6) { left: 175px; }
+    .biome-indicators button:nth-of-type(7) { left: 210px; }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      width: 100%;
+    }
+
+    .category-card {
+      position: relative;
+      display: flex;
+      min-height: 230px;
+      align-items: flex-end;
+      gap: 20px;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #465b43, #202a23 78%);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      text-decoration: none;
+      isolation: isolate;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .category-card::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background: linear-gradient(0deg, rgba(5, 8, 6, 0.88), transparent 78%);
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(181, 228, 140, 0.7);
+    }
+
+    .category-card--items {
+      background:
+        radial-gradient(ellipse at 75% 25%, rgba(198, 155, 91, 0.55), transparent 48%),
+        linear-gradient(145deg, #5c4932, #202a23 78%);
+    }
+
+    .category-card--badges {
+      background:
+        radial-gradient(ellipse at 75% 25%, rgba(181, 228, 140, 0.48), transparent 48%),
+        linear-gradient(145deg, #3e5944, #202a23 78%);
+    }
+
+    .category-art {
+      position: absolute;
+      z-index: -1;
+      top: 24px;
+      right: 28px;
+      width: 112px;
+      height: 112px;
+      color: rgba(242, 240, 218, 0.82);
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+    }
+
+    .category-card h2,
+    .steam-card h2,
+    .community-footer h2 {
+      margin: 0;
+      font-family: "Bangers", cursive;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.045em;
+      line-height: 1;
+      text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .steam-card {
+      position: relative;
+      display: flex;
+      min-height: 260px;
+      align-items: flex-end;
+      width: 100%;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      background: #273128;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+      isolation: isolate;
+    }
+
+    .steam-card > img {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .steam-card::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background: linear-gradient(90deg, rgba(7, 10, 8, 0.94), rgba(7, 10, 8, 0.55) 60%, rgba(7, 10, 8, 0.2));
+    }
+
+    .steam-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      max-width: 560px;
+    }
+
+    .steam-content p,
+    .community-footer p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.83);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .placeholder-button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 10px;
+      background: #f3f0d7;
+      color: #171917;
+      cursor: pointer;
+      font-family: "Bangers", cursive;
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      transition: transform 160ms ease, background-color 160ms ease;
+    }
+
+    .placeholder-button:hover {
+      transform: translateY(-2px);
+      background: #dcebc8;
+    }
+
+    .placeholder-status {
+      min-height: 1.4em;
+      color: #dcebc8;
+      font-size: 0.9rem;
+    }
+
+    .community-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      width: min(100% - 48px, 1080px);
+      margin: 0 auto;
+      padding: 28px 0 34px;
+      border-top: 1px solid rgba(255, 255, 255, 0.17);
+    }
+
+    .community-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .community-footer h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .community-footer .placeholder-button {
+      background: #586d4d;
+      border-color: #839b71;
+      color: #fff;
+    }
+
+    .community-footer .placeholder-button:hover {
+      background: #69825d;
+    }
+
+    .creator-footer {
+      width: 100%;
+      margin: auto 0 0;
+      padding: 24px 3.5%;
+      gap: 24px;
+      border-top: 0;
+      background: #1c1c1c;
+    }
+
+    .creator-footer-heading {
+      display: flex;
+      max-width: 32%;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .creator-footer-heading > img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .creator-footer-heading h2 {
+      margin: 0;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.1;
+      text-align: center;
+      text-shadow: none;
+    }
+
+    .creator-list {
+      display: grid;
+      flex: 1;
+      grid-template-columns: repeat(4, minmax(90px, 1fr));
+      gap: 10px;
+    }
+
+    .creator-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 4px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-family: "Darumadrop One", cursive;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .creator-card > img {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 4px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .creator-name {
+      font-size: clamp(1rem, 1.5vw, 1.4rem);
+      line-height: 1.05;
+    }
+
+    .creator-handle {
+      color: #979797;
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 0.75rem;
+    }
+
+    .creator-card .placeholder-status {
+      min-height: 0;
+      font-size: 0.7rem;
+    }
+
+    .creator-card:focus-visible {
+      outline: 3px solid #b5e48c;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .creator-footer {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 24px 18px;
+      }
+
+      .creator-footer-heading {
+        max-width: none;
+        justify-content: center;
+      }
+
+      .creator-list {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        gap: 18px 10px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        align-items: center;
+        padding: 12px 16px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .header-actions {
+        gap: 8px;
+      }
+
+      .header-button {
+        min-height: 40px;
+        padding: 8px 10px;
+        font-size: 0.85rem;
+      }
+
+      .brand-art {
+        width: clamp(100px, 28vw, 190px);
+        max-height: 64px;
+      }
+
+      .home-main {
+        gap: 32px;
+        width: min(100% - 32px, 1080px);
+        padding-top: 56px;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .home-title {
+        padding: 12px 20px 10px;
+      }
+
+      .biomes-card {
+        min-height: 340px;
+        border-radius: 20px;
+      }
+
+      .biome-dialog {
+        width: calc(100vw - 20px);
+        height: min(643px, calc(100vh - 20px));
+        border-radius: 22px;
+      }
+
+      .biome-dialog-header {
+        flex-basis: 118px;
+        padding: 26px 42px 0;
+      }
+
+      .biome-dialog-header h2 {
+        font-size: clamp(2rem, 7.8vw, 3.5rem);
+      }
+
+      .biome-close {
+        top: 8px;
+        right: 8px;
+        width: 34px;
+        height: 34px;
+        font-size: 1.3rem;
+      }
+
+      .biome-carousel {
+        flex-basis: 190px;
+      }
+
+      .biome-track {
+        left: 13.4%;
+        gap: 32px;
+      }
+
+      .biome-slide {
+        width: calc(100vw - 142px);
+        border-radius: 20px;
+      }
+
+      .biome-arrow {
+        top: calc(50% - 25px);
+        width: 58px;
+        height: 58px;
+      }
+
+      .biome-arrow--previous {
+        left: 4px;
+      }
+
+      .biome-arrow--next {
+        right: 4px;
+      }
+
+      .biome-indicators {
+        margin-bottom: 20px;
+      }
+
+      .biomes-title {
+        padding: 26px;
+      }
+
+      .category-card {
+        min-height: 190px;
+        padding: 24px;
+      }
+
+      .category-art {
+        top: 18px;
+        right: 20px;
+        width: 96px;
+        height: 96px;
+      }
+
+      .steam-card {
+        min-height: 300px;
+        padding: 24px;
+      }
+
+      .steam-card::after {
+        background: linear-gradient(0deg, rgba(7, 10, 8, 0.95), rgba(7, 10, 8, 0.32));
+      }
+
+      .community-footer {
+        width: min(100% - 32px, 1080px);
+        align-items: flex-start;
+        padding: 24px 0;
+      }
+
+      .creator-footer {
+        width: 100%;
+        align-items: stretch;
+        padding: 24px 18px;
+      }
+
+      .community-footer .placeholder-button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .brand {
+        font-size: 2rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .header-button {
+        flex: 1;
+        max-width: none;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }

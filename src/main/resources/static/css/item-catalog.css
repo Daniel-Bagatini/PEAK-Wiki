@@ -1,0 +1,283 @@
+.catalog-page {
+  color-scheme: light;
+  background: transparent;
+  color: #fff;
+  font-family: "Darumadrop One", cursive;
+}
+
+.catalog-page::before {
+  background:
+    linear-gradient(rgba(10, 12, 11, 0.58), rgba(10, 12, 11, 0.76)),
+    var(--biome-background);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.catalog-page .site-header {
+  z-index: 2;
+  width: 100%;
+  min-height: 158px;
+  margin: 0;
+  padding: 20px max(5vw, 24px);
+  background: #1c1c1c;
+}
+
+.catalog-page .brand {
+  gap: 16px;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+}
+
+.catalog-page .header-actions {
+  gap: 54px;
+}
+
+.catalog-page .header-button {
+  min-height: 54px;
+  max-width: 200px;
+  padding: 12px 20px;
+  border: 1px solid #111;
+  border-radius: 10px;
+  font-family: "Darumadrop One", cursive;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.catalog-main {
+  flex: 1;
+  width: min(100% - 32px, 1120px);
+  margin: 0 auto;
+  padding: 44px 0 120px;
+}
+
+.catalog-summary,
+.catalog-section-title,
+.catalog-table-wrap {
+  border: 2px solid #181818;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
+.catalog-summary {
+  width: min(100%, 698px);
+  min-height: 404px;
+  margin: 0 auto 54px;
+  padding: 22px 28px 28px;
+  background: #d7ccae;
+  color: #171715;
+}
+
+.catalog-summary h2 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.catalog-summary ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog-summary a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 108px;
+  padding: 12px 14px;
+  border: 1px solid #211d17;
+  background: rgba(255, 255, 255, 0.24);
+  color: inherit;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.catalog-summary a:hover,
+.catalog-summary a:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.summary-number {
+  font-size: 1.8rem;
+}
+
+.catalog-section {
+  width: min(100%, 920px);
+  margin: 0 0 54px;
+  margin-right: auto;
+  margin-left: auto;
+  scroll-margin-top: 24px;
+}
+
+.catalog-section-title {
+  margin: 0;
+  padding: 7px 18px 10px;
+  background: #d7ccae;
+  color: #171715;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  text-align: center;
+}
+
+.catalog-table-wrap {
+  overflow: hidden;
+  margin-top: 10px;
+  background: #e5dfcf;
+  color: #181713;
+}
+
+.catalog-table {
+  min-width: 740px;
+  margin: 0;
+  color: inherit;
+  font-family: "Darumadrop One", cursive;
+  font-size: 1.05rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.catalog-table > :not(caption) > * > * {
+  padding: 12px 10px;
+  border-color: rgba(30, 26, 19, 0.55);
+  border-right: 1px solid rgba(30, 26, 19, 0.55);
+  background: transparent;
+  color: inherit;
+}
+
+.catalog-table > :not(caption) > * > *:last-child {
+  border-right: 0;
+}
+
+.catalog-table thead th {
+  background: #c8b991;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.catalog-table tbody tr:nth-child(even) {
+  background: rgba(181, 165, 125, 0.17);
+}
+
+.catalog-table tbody th {
+  min-width: 125px;
+  font-weight: 400;
+}
+
+.catalog-table--food {
+  min-width: 880px;
+}
+
+.catalog-table--equipment {
+  min-width: 720px;
+}
+
+.catalog-icons {
+  width: 92px;
+  min-width: 82px;
+}
+
+.catalog-icons img {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 2px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.catalog-icon-empty {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+}
+
+.catalog-weight {
+  white-space: nowrap;
+}
+
+.catalog-weight-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.catalog-weight-icon {
+  width: 33px;
+  height: 42px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.catalog-note {
+  display: block;
+  margin-top: 5px;
+  color: #514a3e;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.catalog-page--equipment .catalog-main {
+  padding-top: 62px;
+}
+
+.catalog-page--equipment .catalog-summary {
+  width: min(100%, 1079px);
+  min-height: 421px;
+  margin-bottom: 59px;
+}
+
+.catalog-page--equipment .catalog-summary ol {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 700px) {
+  .catalog-page .site-header {
+    padding: 16px 18px;
+  }
+
+  .catalog-page .header-actions {
+    gap: 10px;
+  }
+
+  .catalog-page .header-button {
+    max-width: 130px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .catalog-main {
+    width: min(100% - 20px, 1000px);
+    padding-top: 30px;
+  }
+
+  .catalog-page--equipment .catalog-main {
+    padding-top: 30px;
+  }
+
+  .catalog-summary {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .catalog-summary ol {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-page--equipment .catalog-main {
+    padding-top: 30px;
+  }
+
+  .catalog-page--equipment .catalog-summary {
+    min-height: 0;
+  }
+
+  .catalog-page--equipment .catalog-summary ol {
+    grid-template-columns: 1fr;
+  }
+}
