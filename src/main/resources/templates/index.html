@@ -35,16 +35,16 @@
                th:href="@{/biomas/{slug}(slug=${biome.slug})}"
                th:attr="aria-label=|Abrir página do bioma ${biome.name}|"
                tabindex="-1">
-              <img th:src="@{/images/biomes/{image}(image=${biome.image})}"
+              <img th:src="${biome.cardImagePath()}"
                    th:attr="alt=|Paisagem do bioma ${biome.name}|,loading=${biome.number < 3 ? 'eager' : 'lazy'},decoding='async'">
               <span class="biome-slide-name" th:text="${biome.name}">Costa</span>
             </a>
           </div>
           <button class="biome-arrow biome-arrow--previous" type="button" aria-label="Bioma anterior">
-            <img th:src="@{/images/biomes/seta.png}" alt="" aria-hidden="true">
+            <img th:src="@{/images/biome-pages/costa/img4447311.png}" alt="" aria-hidden="true">
           </button>
           <button class="biome-arrow biome-arrow--next" type="button" aria-label="Próximo bioma">
-            <img th:src="@{/images/biomes/seta.png}" alt="" aria-hidden="true">
+            <img th:src="@{/images/biome-pages/costa/img4447311.png}" alt="" aria-hidden="true">
           </button>
         </div>
         <div class="biome-indicators" role="group" aria-label="Escolher bioma">

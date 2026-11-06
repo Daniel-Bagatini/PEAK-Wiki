@@ -224,6 +224,14 @@ public class PageController {
 
 	public record Biome(String name, String slug, String image, int number, String backdrop, String banner,
 			String description, List<Food> foods, List<Hazard> hazards, List<ArrivalSection> arrival) {
+		public String imagePath(String image) {
+			return ImagePaths.canonicalize("/images/biome-pages/" + slug + "/" + image);
+		}
+
+		public String cardImagePath() {
+			return ImagePaths.canonicalize("/images/biomes/" + image);
+		}
+
 		public List<String> titleOverlays() {
 			return slug.equals("pico")
 					? List.of("imgRectangle7.png", "imgRectangle8.svg")

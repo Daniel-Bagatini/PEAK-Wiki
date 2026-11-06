@@ -13,17 +13,17 @@
   <link rel="stylesheet" th:href="@{/css/biome-detail.css}">
 </head>
 <body class="biome-page"
-      th:style="'--biome-background: url(/images/biome-pages/' + ${biome.slug} + '/' + ${biome.backdrop} + ')'">
+      th:style="'--biome-background: url(' + ${biome.imagePath(biome.backdrop)} + ')'">
   <div th:replace="~{fragments/header :: siteHeader}"></div>
   <main class="biome-page-main">
     <section class="biome-hero" th:attr="aria-label=|Bioma ${biome.name}|">
       <div class="biome-title-frame">
         <img class="biome-title-art"
-             th:src="@{/images/biome-pages/{slug}/{image}(slug=${biome.slug},image=${biome.banner})}"
+             th:src="${biome.imagePath(biome.banner)}"
              alt="">
         <img class="biome-title-overlay"
              th:each="overlay : ${biome.titleOverlays}"
-             th:src="@{/images/biome-pages/{slug}/{image}(slug=${biome.slug},image=${overlay})}"
+             th:src="${biome.imagePath(overlay)}"
              alt="">
         <h1 th:text="${biome.name}">Costa</h1>
       </div>
@@ -39,7 +39,7 @@
         <li class="food-item" th:each="food : ${biome.foods}">
           <div class="food-icons">
             <img th:each="foodImage : ${food.images}"
-                 th:src="@{/images/biome-pages/{slug}/{image}(slug=${biome.slug},image=${foodImage})}"
+                 th:src="${biome.imagePath(foodImage)}"
                  alt="">
           </div>
           <span th:text="${food.name}">Coco</span>
@@ -58,7 +58,7 @@
       <div class="danger-list">
         <article class="danger-row" th:each="hazard : ${biome.hazards}">
           <img class="danger-image"
-               th:src="@{/images/biome-pages/{slug}/{image}(slug=${biome.slug},image=${hazard.image})}"
+               th:src="${biome.imagePath(hazard.image)}"
                th:alt="${hazard.title}">
           <div class="danger-copy">
             <h3 th:text="${hazard.title}">Perigo</h3>
@@ -75,7 +75,7 @@
       <h2 id="biome-arrival-title">A CHEGADA</h2>
       <article class="arrival-card" th:each="section : ${biome.arrival}">
         <p th:text="${section.description}">Descrição da chegada.</p>
-        <img th:src="@{/images/biome-pages/{slug}/{image}(slug=${biome.slug},image=${section.image})}"
+        <img th:src="${biome.imagePath(section.image)}"
              th:alt="${section.alt}">
       </article>
     </section>

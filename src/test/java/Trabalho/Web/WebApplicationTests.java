@@ -142,6 +142,30 @@ class WebApplicationTests {
 	}
 
 	@Test
+	void allHomepageAndBiomeImageSourcesResolve() throws Exception {
+		String[] routes = {
+				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico"
+		};
+		Pattern imageSource = Pattern.compile("src=\"(/images/[^\"]+)\"");
+		Pattern backgroundImage = Pattern.compile("url\\((/images/[^)]+)\\)");
+
+		for (String route : routes) {
+			String html = mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andReturn()
+					.getResponse()
+					.getContentAsString();
+			for (Pattern pattern : new Pattern[] { imageSource, backgroundImage }) {
+				Matcher matcher = pattern.matcher(html);
+				while (matcher.find()) {
+					mockMvc.perform(get(matcher.group(1))).andExpect(status().isOk());
+				}
+			}
+		}
+	}
+
+	@Test
 	void returnsNotFoundForUnknownBiome() throws Exception {
 		mockMvc.perform(get("/biomas/{slug}", "desconhecido"))
 				.andExpect(status().isNotFound());

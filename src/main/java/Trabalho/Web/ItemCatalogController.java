@@ -216,16 +216,18 @@ public class ItemCatalogController {
 
 	private static CatalogItem food(String name, List<String> images, String effect, String cookedEffect,
 			String locations, String weight, String note) {
-		return new CatalogItem(name, images, effect, cookedEffect, locations, weight, note);
+		return new CatalogItem(name, images.stream().map(ImagePaths::canonicalize).toList(),
+				effect, cookedEffect, locations, weight, note);
 	}
 
 	private static CatalogItem gear(String name, String image, String weight, String locations, String description) {
-		return new CatalogItem(name, image == null ? List.of() : List.of(EQUIPMENT_ROOT + image),
+		return new CatalogItem(name, image == null ? List.of()
+				: List.of(ImagePaths.canonicalize(EQUIPMENT_ROOT + image)),
 				"", "", locations, weight, description);
 	}
 
 	private static String biomeImage(String biome, String image) {
-		return "/images/biome-pages/" + biome + "/" + image;
+		return ImagePaths.canonicalize("/images/biome-pages/" + biome + "/" + image);
 	}
 
 	public record ItemCatalog(String title, boolean food, List<ItemSection> sections) {
