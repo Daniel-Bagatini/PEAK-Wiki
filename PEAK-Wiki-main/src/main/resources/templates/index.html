@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111312">
+  <title>PEAK — Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Darumadrop+One&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/site.css}">
+  <link rel="stylesheet" th:href="@{/css/item-dialog.css}">
+</head>
+<body>
+  <div th:replace="~{fragments/header :: siteHeader}"></div>
+
+  <main class="home-main d-flex flex-column align-items-center">
+    <h1 class="home-title">WIKI DO PEAK</h1>
+    <button class="biomes-card" id="biomas" type="button" aria-label="Explore os biomas" aria-haspopup="dialog" aria-controls="biome-dialog">
+      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718" alt="Arte oficial de PEAK com uma paisagem de montanha">
+      <h2 class="biomes-title">Biomas</h2>
+    </button>
+
+    <dialog class="biome-dialog" id="biome-dialog" aria-labelledby="biome-dialog-title">
+      <div class="biome-dialog-frame">
+        <button class="biome-close" type="button" aria-label="Fechar seleção de biomas">&times;</button>
+        <header class="biome-dialog-header">
+          <h2 id="biome-dialog-title">Selecione o bioma</h2>
+        </header>
+        <div class="biome-carousel" aria-label="Carrossel de biomas">
+          <div class="biome-track" data-biome-track>
+            <a class="biome-slide"
+               th:each="biome : ${biomes}"
+               th:href="@{/biomas/{slug}(slug=${biome.slug})}"
+               th:attr="aria-label=|Abrir página do bioma ${biome.name}|"
+               tabindex="-1">
+              <img th:src="${biome.cardImagePath()}"
+                   th:attr="alt=|Paisagem do bioma ${biome.name}|,loading=${biome.number < 3 ? 'eager' : 'lazy'},decoding='async'">
+              <span class="biome-slide-name" th:text="${biome.name}">Costa</span>
+            </a>
+          </div>
+          <button class="biome-arrow biome-arrow--previous" type="button" aria-label="Bioma anterior">
+            <img th:src="@{/images/biome-pages/costa/img4447311.png}" alt="" aria-hidden="true">
+          </button>
+          <button class="biome-arrow biome-arrow--next" type="button" aria-label="Próximo bioma">
+            <img th:src="@{/images/biome-pages/costa/img4447311.png}" alt="" aria-hidden="true">
+          </button>
+        </div>
+        <div class="biome-indicators" role="group" aria-label="Escolher bioma">
+          <img th:src="@{/images/biomes/indicadores.svg}" alt="" aria-hidden="true">
+          <span class="biome-indicator-first" aria-hidden="true"></span>
+          <span class="biome-indicator-current" aria-hidden="true"></span>
+          <button th:each="biome, iterStat : ${biomes}"
+                  type="button"
+                  th:attr="aria-label=${biome.name},data-biome-indicator=${iterStat.index},aria-pressed=${iterStat.first}"></button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="biome-dialog item-type-dialog" id="item-dialog" aria-labelledby="item-dialog-title">
+      <div class="biome-dialog-frame">
+        <button class="biome-close" type="button" aria-label="Fechar seleção de itens">&times;</button>
+        <header class="biome-dialog-header">
+          <h2 id="item-dialog-title">Selecione o tipo</h2>
+        </header>
+        <nav class="item-choice-list" aria-label="Tipos de itens">
+          <a class="item-choice-card item-choice-card--food" th:href="@{/itens/comidas}"
+             aria-label="Abrir catálogo de comidas">
+            <span class="item-choice-art" aria-hidden="true">
+              <img th:src="@{/images/items/selection/comida-185.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-184.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-173.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-174.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-175.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-176.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-177.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-178.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-179.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-180.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-181.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-182.png}" alt="">
+              <img th:src="@{/images/items/selection/comida-183.png}" alt="">
+            </span>
+            <span class="item-choice-label">Comidas</span>
+          </a>
+          <a class="item-choice-card item-choice-card--equipment" th:href="@{/itens/equipamentos}"
+             aria-label="Abrir catálogo de equipamentos">
+            <span class="item-choice-art" aria-hidden="true">
+              <img th:src="@{/images/items/selection/equipamento-199.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-200.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-198.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-197.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-186.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-187.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-188.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-189.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-190.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-191.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-192.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-193.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-194.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-195.png}" alt="">
+              <img th:src="@{/images/items/selection/equipamento-196.png}" alt="">
+            </span>
+            <span class="item-choice-label">Equipamentos</span>
+          </a>
+        </nav>
+      </div>
+    </dialog>
+
+    <section class="category-grid d-grid" aria-label="Conteúdo da wiki">
+      <button class="category-card category-card--items" id="itens" type="button"
+              aria-label="Acessar itens" aria-haspopup="dialog" aria-controls="item-dialog">
+        <svg class="category-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path d="M37 35c0-10 8-18 18-18h10c10 0 18 8 18 18v8l11 12v45H26V55l11-12v-8Z" fill="currentColor" opacity=".22"/>
+          <path d="M37 43V35c0-10 8-18 18-18h10c10 0 18 8 18 18v8M26 55l11-12h46l11 12v45H26V55Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M42 57h36v22H42zM49 17l3 13m16-13-3 13M26 65h16m36 0h16" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M55 65h10" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <h2>Itens</h2>
+      </button>
+      <a class="category-card category-card--badges" id="insignias" th:href="@{/insignias}" aria-label="Acessar insígnias">
+        <svg class="category-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <path d="m37 69-7 39 30-17 30 17-7-39" fill="currentColor" opacity=".22"/>
+          <path d="m37 69-7 39 30-17 30 17-7-39" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+          <path d="m60 12 12 8 15 1 4 14 10 11-7 13-1 15-14 4-11 10-13-7-15-1-4-14-10-11 7-13 1-15 14-4 11-10Z" fill="currentColor" opacity=".22"/>
+          <path d="m60 12 12 8 15 1 4 14 10 11-7 13-1 15-14 4-11 10-13-7-15-1-4-14-10-11 7-13 1-15 14-4 11-10Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+          <path d="m60 31 7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2 7-15Z" fill="currentColor"/>
+        </svg>
+        <h2>Insígnias</h2>
+      </a>
+    </section>
+
+    <section class="steam-card" id="steam" aria-labelledby="steam-title">
+      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718" alt="" aria-hidden="true">
+      <div class="steam-content d-flex flex-column align-items-start">
+        <h2 id="steam-title">PEAK na Steam</h2>
+        <p>Confira o jogo e prepare-se para escalar. O link da página será adicionado em breve.</p>
+        <button class="placeholder-button" type="button" data-placeholder="Steam">Ver página na Steam</button>
+        <span class="placeholder-status" aria-live="polite"></span>
+      </div>
+    </section>
+  </main>
+
+  <div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/biomes.js}" defer></script>
+  <script th:src="@{/items.js}" defer></script>
+</body>
+</html>

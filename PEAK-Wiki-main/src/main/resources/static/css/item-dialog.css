@@ -1,0 +1,127 @@
+.category-card--items {
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.category-card--items:focus-visible {
+  outline: 3px solid #b5e48c;
+  outline-offset: 5px;
+}
+
+.item-type-dialog .biome-dialog-header {
+  flex-basis: 174px;
+}
+
+.item-choice-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 47px;
+  padding: 25px 0 30px;
+}
+
+.item-choice-card {
+  position: relative;
+  display: grid;
+  width: min(785px, calc(100vw - 48px));
+  min-height: 110px;
+  max-height: 173px;
+  aspect-ratio: 785 / 173;
+  place-items: center;
+  overflow: hidden;
+  border: 8px solid #000;
+  border-radius: 30px;
+  color: #fff;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+.item-choice-card::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  background: rgba(0, 0, 0, 0.54);
+}
+
+.item-choice-card:focus-visible {
+  outline: 4px solid #ddca40;
+  outline-offset: 4px;
+}
+
+.item-choice-art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.item-choice-art img {
+  position: absolute;
+  display: block;
+  height: auto;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.item-choice-label {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-family: "Darumadrop One", cursive;
+  font-size: clamp(2.4rem, 8vw, 6.25rem);
+  line-height: 1;
+  text-align: center;
+  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.35);
+}
+
+.item-choice-card--food .item-choice-art img:nth-child(1) { left: 1.66%; top: -16.18%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(2) { left: 16.69%; top: -9.83%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(3) { left: 25.60%; top: -50.87%; width: 35.03%; }
+.item-choice-card--food .item-choice-art img:nth-child(4) { left: 43.31%; top: -16.18%; width: 24.59%; }
+.item-choice-card--food .item-choice-art img:nth-child(5) { left: 58.98%; top: -37.57%; width: 29.30%; }
+.item-choice-card--food .item-choice-art img:nth-child(6) { left: 77.71%; top: -9.83%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(7) { left: -4.08%; top: 5.78%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(8) { left: 9.04%; top: 10.98%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(9) { left: 20.38%; top: -4.62%; width: 32.87%; }
+.item-choice-card--food .item-choice-art img:nth-child(10) { left: 30.32%; top: 16.18%; width: 33.50%; }
+.item-choice-card--food .item-choice-art img:nth-child(11) { left: 49.04%; top: 5.78%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(12) { left: 63.82%; top: 10.98%; width: 24.46%; }
+.item-choice-card--food .item-choice-art img:nth-child(13) { left: 75.80%; top: 16.18%; width: 24.46%; }
+
+.item-choice-card--equipment .item-choice-art img:nth-child(1) { left: 2.55%; top: -44.51%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(2) { left: -9.68%; top: -12.14%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(3) { left: 16.05%; top: -21.39%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(4) { left: 33.50%; top: -32.95%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(5) { left: 44.71%; top: 13.87%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(6) { left: 50.06%; top: -19.08%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(7) { left: 65.35%; top: -32.95%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(8) { left: 74.52%; top: -32.95%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(9) { left: 77.58%; top: 5.78%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(10) { left: 66.50%; top: 10.98%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(11) { left: 53.12%; top: 5.78%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(12) { left: 37.45%; top: 5.78%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(13) { left: 23.95%; top: 10.98%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(14) { left: 8.28%; top: 10.98%; width: 24.46%; }
+.item-choice-card--equipment .item-choice-art img:nth-child(15) { left: -5.35%; top: 10.98%; width: 24.46%; }
+
+@media (max-width: 760px) {
+  .item-choice-list {
+    justify-content: center;
+    gap: 24px;
+    padding: 12px 0 24px;
+  }
+
+  .item-choice-card {
+    width: calc(100vw - 48px);
+    border-width: 5px;
+    border-radius: 22px;
+  }
+
+  .item-choice-label {
+    font-size: clamp(2rem, 9vw, 4rem);
+  }
+}
