@@ -207,6 +207,11 @@ public class PageController {
 		return "biome-detail";
 	}
 
+	@GetMapping({"/login", "/cadastro", "/cadastrar"})
+	public String login() {
+		return "login";
+	}
+
 	private static Food food(String name, String... images) {
 		return new Food(name, List.of(images));
 	}
