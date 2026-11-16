@@ -21,7 +21,8 @@ public class PageController {
 							food("Maçã vermelha", "imgImage41.png"),
 							food("Maçã amarela", "imgImage42.png"),
 							food("Maçã verde", "imgImage43.png"),
-							food("Cogumelos em grupo", "img64PxClusterShroom1.png", "img64PxClusterShroomPoisonous1.png"),
+							food("Cogumelos em grupo", "img64PxClusterShroom1.png",
+									"img64PxClusterShroomPoisonous1.png"),
 							food("Cogumelos botão", "imgImage47.png", "img64PxButtonShroomPoisonous1.png"),
 							food("Cogumelos trombeta", "imgImage44.png", "imgImage45.png"),
 							food("Cogumelos gordinhos", "img64PxChubbyShroom1.png"),
@@ -45,7 +46,8 @@ public class PageController {
 							food("Maçã vermelha", "imgImage41.png"),
 							food("Maçã amarela", "imgImage42.png"),
 							food("Maçã verde", "imgImage43.png"),
-							food("Cogumelos em grupo", "img64PxClusterShroom1.png", "img64PxClusterShroomPoisonous1.png"),
+							food("Cogumelos em grupo", "img64PxClusterShroom1.png",
+									"img64PxClusterShroomPoisonous1.png"),
 							food("Cogumelos botão", "imgImage47.png", "img64PxButtonShroomPoisonous1.png"),
 							food("Cogumelos trombeta", "imgImage44.png", "imgImage45.png"),
 							food("Cogumelos gordinhos", "img64PxChubbyShroom1.png"),
@@ -124,7 +126,8 @@ public class PageController {
 							food("Laranja amarela", "imgImage285.png"),
 							food("Cogumelos botão", "imgImage47.png", "img64PxButtonShroomPoisonous1.png"),
 							food("Cogumelos trombeta", "imgImage44.png", "imgImage45.png"),
-							food("Cogumelos em grupo", "img64PxClusterShroom1.png", "img64PxClusterShroomPoisonous1.png"),
+							food("Cogumelos em grupo", "img64PxClusterShroom1.png",
+									"img64PxClusterShroomPoisonous1.png"),
 							food("Cogumelos gordinhos", "img64PxChubbyShroom1.png"),
 							food("Espinheiro dourado", "imgImage296.png"),
 							food("Espinheiro vermelho", "imgImage295.png")),
@@ -185,9 +188,11 @@ public class PageController {
 					"O Pico em PEAK é o estágio final do jogo, caracterizado por uma subida vertical final, um campo de flores vibrante e um grande sol preenchendo o céu. A área exige a gestão perfeita dos últimos recursos para manter a stamina. É o local ideal para focar na precisão de cada agarre e usar a resistência mental para alcançar o ponto final e a glória da escalada.",
 					List.of(), List.of(),
 					List.of(
-							new ArrivalSection("Após a escalada extenuante e a superação dos biomas mais desafiadores, a jornada atinge seu clímax no Pico. A visão no topo é recompensadora, com um campo de flores vibrante e um grande sol dominando a paisagem.",
+							new ArrivalSection(
+									"Após a escalada extenuante e a superação dos biomas mais desafiadores, a jornada atinge seu clímax no Pico. A visão no topo é recompensadora, com um campo de flores vibrante e um grande sol dominando a paisagem.",
 									"imgImage299.png", "Bandeira azul no campo de flores do Pico"),
-							new ArrivalSection("No ponto mais alto, a recompensa é a Bandeira do Escoteiro. Ao lado dela, uma caixa de resgate contém o sinalizador que finaliza a expedição. Após a contagem regressiva, todos os escoteiros sobreviventes aparecem juntos para celebrar a chegada.",
+							new ArrivalSection(
+									"No ponto mais alto, a recompensa é a Bandeira do Escoteiro. Ao lado dela, uma caixa de resgate contém o sinalizador que finaliza a expedição. Após a contagem regressiva, todos os escoteiros sobreviventes aparecem juntos para celebrar a chegada.",
 									"imgImage300.png", "Escoteiros celebrando a chegada ao Pico"))));
 
 	@GetMapping("/")
@@ -207,9 +212,19 @@ public class PageController {
 		return "biome-detail";
 	}
 
-	@GetMapping({"/login", "/cadastro", "/cadastrar"})
+	@GetMapping("/login")
 	public String login() {
 		return "login";
+	}
+
+	@GetMapping({ "/cadastro", "/cadastrar" })
+	public String cadastro() {
+		return "cadastro";
+	}
+
+	@GetMapping({ "/recuperar-senha", "/esqueci-senha" })
+	public String recuperarSenha() {
+		return "recuperar-senha";
 	}
 
 	private static Food food(String name, String... images) {
