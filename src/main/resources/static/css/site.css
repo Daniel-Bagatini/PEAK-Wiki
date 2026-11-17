@@ -185,6 +185,17 @@
       text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
     }
 
+    .category-card-label {
+      display: inline-block;
+      margin: 0;
+      color: #fff;
+      font-family: "Bangers", cursive;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
     .biomes-card:focus-visible {
       outline: 3px solid #b5e48c;
       outline-offset: 5px;
@@ -541,90 +552,95 @@
       text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
     }
 
+
+    
     .category-card--items h2 {
       width: 100%;
       text-align: right;
     }
+    
 
-    .steam-section {
-      position: relative;
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      padding: 8px 0 0;
-    }
+    .steam-promo-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(90deg, #102135 0%, #173f67 100%);
+            border-radius: 20px;
+            padding: 20px 40px;
+            text-decoration: none;
+            color: #ffffff;
+            position: relative;
+            margin-right: 65px; /* Abre espaço para o círculo que vai transbordar */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-    .steam-publishers {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+        .steam-promo-btn:hover {
+            transform: scale(1.02) translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
 
-    .steam-publisher {
-      width: clamp(72px, 16vw, 190px);
-      max-height: 190px;
-      object-fit: contain;
-    }
+        /* Estilo do texto */
+        .steam-promo-text {
+            font-family: "Darumadrop One", cursive;
+            font-size: 38px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            text-align: left;
+            margin-right: 50px; /* Margem interna antes do ícone */
+            z-index: 1;
+        }
 
-    .steam-link {
-      position: relative;
-      display: flex;
-      min-height: 152px;
-      align-items: center;
-      width: min(624px, 68%);
-      overflow: visible;
-      padding: 24px 150px 24px 36px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, #0c1a2f 25.728%, #103c65);
-      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
-      color: #fff;
-      text-decoration: none;
-      transition: transform 160ms ease, filter 160ms ease;
-    }
+        /* Círculo da Steam sobreposto */
+        .steam-icon-container {
+            position: absolute;
+            right: -65px;
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #153159 0%, #15588f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.25);
+            z-index: 2;
+        }
 
-    .steam-link:hover {
-      transform: translateY(-3px);
-      filter: brightness(1.12);
-      color: #fff;
-    }
+        /* Ícone da Steam em si */
+        .steam-icon-container i {
+            font-size: 80px;
+            color: #ffffff;
+        }
 
-    .steam-link > span {
-      width: 100%;
-      font-family: "Darumadrop One", cursive;
-      font-size: clamp(1.4rem, 3.8vw, 3rem);
-      line-height: 1.05;
-      text-align: center;
-    }
-
-    .steam-link > img {
-      position: absolute;
-      top: -14px;
-      right: 3%;
-      width: clamp(90px, 15vw, 195px);
-      aspect-ratio: 1;
-      object-fit: contain;
-    }
-
-    .steam-quote {
-      position: absolute;
-      width: clamp(42px, 7vw, 92px);
-      height: auto;
-      pointer-events: none;
-    }
-
-    .steam-quote--left {
-      top: -42px;
-      left: 10%;
-      transform: rotate(160deg) scaleY(-1);
-    }
-
-    .steam-quote--right {
-      right: 8%;
-      bottom: -34px;
-      transform: rotate(20deg);
-    }
+        .steam-logo-img {
+            width: 92%;
+            height: 92%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        /* Responsividade básica para telas menores */
+        @media (max-width: 500px) {
+            .steam-promo-btn {
+                padding: 15px 30px;
+                margin-right: 50px;
+            }
+            .steam-promo-text {
+                font-size: 28px;
+                margin-right: 40px;
+            }
+            .steam-icon-container {
+                right: -50px;
+                width: 110px;
+                height: 110px;
+            }
+            .steam-icon-container i {
+                font-size: 60px;
+            }
+            .steam-logo-img {
+                width: 92%;
+                height: 92%;
+            }
+        }
 
     .game-overview,
     .community-preview {
