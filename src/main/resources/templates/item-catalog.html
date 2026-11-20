@@ -13,7 +13,7 @@
   <link rel="stylesheet" th:href="@{/css/item-catalog.css}">
 </head>
 <body class="catalog-page" th:classappend="${catalog.food} ? ' catalog-page--food' : ' catalog-page--equipment'"
-      th:style="'--biome-background: url(/images/biome-pages/costa/imgImage167.png)'">
+      th:style="'--biome-background: url(/images/biome-pages/costa/imgImage167.webp)'">
   <div th:replace="~{fragments/header :: siteHeader}"></div>
   <main class="catalog-main">
     <h1 class="visually-hidden" th:text="${catalog.title}">Comidas</h1>
@@ -69,7 +69,7 @@
               <td class="catalog-weight">
                 <span class="catalog-weight-value">
                   <img class="catalog-weight-icon"
-                       th:src="@{/images/items/equipamentos/imgImage203.png}" alt="">
+                       th:src="@{/images/items/equipamentos/imgImage203.webp}" alt="">
                   <span th:text="${item.weight}">2,5</span>
                 </span>
               </td>
