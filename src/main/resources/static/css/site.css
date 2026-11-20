@@ -457,7 +457,7 @@
     .category-card {
       position: relative;
       display: flex;
-      min-height: 230px;
+      min-height: 300px;
       align-items: flex-end;
       gap: 20px;
       overflow: hidden;
@@ -561,15 +561,17 @@
     
 
     .steam-promo-btn {
-            display: inline-flex;
+            display: flex;
+            box-sizing: border-box;
+            width: min(758px, 100%); /* mesma largura do quadrado "Sobre o jogo" */
             align-items: center;
             background: linear-gradient(90deg, #102135 0%, #173f67 100%);
-            border-radius: 20px;
-            padding: 20px 40px;
+            border-radius: 30px;
+            padding: 30px 60px; /* proporção original (20px 40px) x1,5 */
             text-decoration: none;
             color: #ffffff;
             position: relative;
-            margin-right: 65px; /* Abre espaço para o círculo que vai transbordar */
+            margin-right: 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -582,20 +584,20 @@
         /* Estilo do texto */
         .steam-promo-text {
             font-family: "Darumadrop One", cursive;
-            font-size: 38px;
+            font-size: 57px;
             line-height: 1.1;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-align: left;
-            margin-right: 50px; /* Margem interna antes do ícone */
+            margin-right: 75px; /* Margem interna antes do ícone */
             z-index: 1;
         }
 
         /* Círculo da Steam sobreposto */
         .steam-icon-container {
             position: absolute;
-            right: -65px;
-            width: 140px;
-            height: 140px;
+            right: 16px; /* dentro da borda direita, alinhado ao quadrado "Sobre o jogo" */
+            width: 210px;
+            height: 210px;
             background: linear-gradient(135deg, #153159 0%, #15588f 100%);
             border-radius: 50%;
             display: flex;
@@ -621,15 +623,16 @@
         /* Responsividade básica para telas menores */
         @media (max-width: 500px) {
             .steam-promo-btn {
-                padding: 15px 30px;
+                width: auto;
                 margin-right: 50px;
+                padding: 15px 30px;
             }
             .steam-promo-text {
                 font-size: 28px;
                 margin-right: 40px;
             }
             .steam-icon-container {
-                right: -50px;
+                right: 12px;
                 width: 110px;
                 height: 110px;
             }
@@ -977,7 +980,7 @@
       }
 
       .category-card {
-        min-height: 190px;
+        min-height: 247px;
         padding: 24px;
       }
 
