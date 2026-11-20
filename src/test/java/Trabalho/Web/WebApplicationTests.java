@@ -38,14 +38,14 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("/biomas/costa")))
 				.andExpect(content().string(containsString("href=\"/insignias\"")))
 				.andExpect(content().string(containsString("/css/site.css")))
-				.andExpect(content().string(containsString("/images/biome-pages/costa/imgImage3.png")))
-				.andExpect(content().string(containsString("/images/home/card-biomes.png")))
-				.andExpect(content().string(containsString("/images/home/card-items.png")))
-				.andExpect(content().string(containsString("/images/home/card-badges.png")))
+				.andExpect(content().string(containsString("/images/biome-pages/costa/imgImage3.webp")))
+				.andExpect(content().string(containsString("/images/home/card-biomes.webp")))
+				.andExpect(content().string(containsString("/images/home/card-items.webp")))
+				.andExpect(content().string(containsString("/images/home/card-badges.webp")))
 				.andExpect(content().string(containsString("Sobre o jogo")))
 				.andExpect(content().string(containsString("jogo cooperativo de escalada")))
 				.andExpect(content().string(containsString("href=\"https://store.steampowered.com/app/3527290/PEAK/\"")))
-				.andExpect(content().string(containsString("/images/home/steam-icon.png")))
+				.andExpect(content().string(containsString("/images/home/steam-icon.webp")))
 				.andExpect(content().string(containsString("Siga os criadores da página no Discord")))
 				.andExpect(content().string(containsString("Rogwerz")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("brand-arrow"))))
@@ -91,13 +91,13 @@ class WebApplicationTests {
 		while (matcher.find()) {
 			mockMvc.perform(get(matcher.group(1)))
 					.andExpect(status().isOk())
-					.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+					.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 			assetCount++;
 		}
 		assertEquals(14, assetCount);
-		mockMvc.perform(get("/images/home/background.png"))
+		mockMvc.perform(get("/images/home/background.webp"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+				.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 	}
 
 	@Test
@@ -118,8 +118,8 @@ class WebApplicationTests {
 					.andExpect(view().name("biome-detail"))
 					.andExpect(content().string(containsString(biome[1])))
 					.andExpect(content().string(containsString("Fórum da Comunidade")))
-					.andExpect(content().string(containsString("/images/biome-pages/" + biome[0] + "/imgImage167.png")))
-					.andExpect(content().string(containsString("--biome-background: url(/images/biome-pages/" + biome[0] + "/imgImage167.png)")))
+					.andExpect(content().string(containsString("/images/biome-pages/" + biome[0] + "/imgImage167.webp")))
+					.andExpect(content().string(containsString("--biome-background: url(/images/biome-pages/" + biome[0] + "/imgImage167.webp)")))
 					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("biome-hero-backdrop"))))
 					.andExpect(content().string(containsString("Denions220")))
 					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
@@ -133,9 +133,9 @@ class WebApplicationTests {
 
 	@Test
 	void servesLocalFigmaImagesForBiomePages() throws Exception {
-		mockMvc.perform(get("/images/biome-pages/costa/imgImage167.png"))
+		mockMvc.perform(get("/images/biome-pages/costa/imgImage167.webp"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+				.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 		mockMvc.perform(get("/images/biome-pages/alpes/imgRectangle7.svg"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/svg+xml")));
@@ -181,7 +181,7 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("Cogumelos")))
 				.andExpect(content().string(containsString("Míticos")))
 				.andExpect(content().string(containsString("Cookies de escoteiro")))
-				.andExpect(content().string(containsString("/images/items/food/embalados/imgImage207.png")))
+				.andExpect(content().string(containsString("/images/items/food/embalados/imgImage207.webp")))
 				.andExpect(content().string(containsString("Fórum da Comunidade")))
 				.andExpect(content().string(containsString("Siga os criadores da página no Discord")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
@@ -198,8 +198,8 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("Itens de uso individual")))
 				.andExpect(content().string(containsString("Itens Místicos")))
 				.andExpect(content().string(containsString("Anti-Corda")))
-				.andExpect(content().string(containsString("/images/items/equipamentos/imgImage219.png")))
-				.andExpect(content().string(containsString("--biome-background: url(/images/biome-pages/costa/imgImage167.png)")))
+				.andExpect(content().string(containsString("/images/items/equipamentos/imgImage219.webp")))
+				.andExpect(content().string(containsString("--biome-background: url(/images/biome-pages/costa/imgImage167.webp)")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
 	}
 
@@ -225,7 +225,7 @@ class WebApplicationTests {
 		while (matcher.find()) {
 			mockMvc.perform(get(matcher.group(1)))
 					.andExpect(status().isOk())
-					.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+					.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 			assetCount++;
 		}
 		assertEquals(30, assetCount);
@@ -233,12 +233,12 @@ class WebApplicationTests {
 
 	@Test
 	void servesLocalCatalogImages() throws Exception {
-		mockMvc.perform(get("/images/items/food/naturais/carrapato.png"))
+		mockMvc.perform(get("/images/items/food/naturais/carrapato.webp"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
-		mockMvc.perform(get("/images/items/equipamentos/imgImage219.png"))
+				.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
+		mockMvc.perform(get("/images/items/equipamentos/imgImage219.webp"))
 				.andExpect(status().isOk())
-				.andExpect(content().contentTypeCompatibleWith(MediaType.IMAGE_PNG));
+				.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 	}
 
 	@Test
