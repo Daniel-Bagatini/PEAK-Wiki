@@ -109,38 +109,33 @@
       </div>
     </dialog>
 
-    <section class="category-grid d-grid" aria-label="Conteúdo da wiki">
-      <button class="category-card category-card--items" id="itens" type="button"
-              aria-label="Acessar itens" aria-haspopup="dialog" aria-controls="item-dialog">
-        <svg class="category-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path d="M37 35c0-10 8-18 18-18h10c10 0 18 8 18 18v8l11 12v45H26V55l11-12v-8Z" fill="currentColor" opacity=".22"/>
-          <path d="M37 43V35c0-10 8-18 18-18h10c10 0 18 8 18 18v8M26 55l11-12h46l11 12v45H26V55Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
-          <path d="M42 57h36v22H42zM49 17l3 13m16-13-3 13M26 65h16m36 0h16" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
-          <path d="M55 65h10" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-        </svg>
-        <h2>Itens</h2>
-      </button>
+    <section class="category-grid" aria-label="Conteúdo da wiki">
+      <a class="category-card category-card--items" id="itens" th:href="@{/itens/comidas}" aria-label="Acessar itens">
+        <img class="category-card-photo" th:src="@{/images/home/card-items.png}" alt="" aria-hidden="true">
+        <span class="category-card-label">Itens</span>
+      </a>
       <a class="category-card category-card--badges" id="insignias" th:href="@{/insignias}" aria-label="Acessar insígnias">
-        <svg class="category-art" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path d="m37 69-7 39 30-17 30 17-7-39" fill="currentColor" opacity=".22"/>
-          <path d="m37 69-7 39 30-17 30 17-7-39" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
-          <path d="m60 12 12 8 15 1 4 14 10 11-7 13-1 15-14 4-11 10-13-7-15-1-4-14-10-11 7-13 1-15 14-4 11-10Z" fill="currentColor" opacity=".22"/>
-          <path d="m60 12 12 8 15 1 4 14 10 11-7 13-1 15-14 4-11 10-13-7-15-1-4-14-10-11 7-13 1-15 14-4 11-10Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
-          <path d="m60 31 7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2 7-15Z" fill="currentColor"/>
-        </svg>
-        <h2>Insígnias</h2>
+        <img class="category-card-photo" th:src="@{/images/home/card-badges.png}" alt="" aria-hidden="true">
+        <span class="category-card-label">Insígnias</span>
       </a>
     </section>
 
-    <section class="steam-card" id="steam" aria-labelledby="steam-title">
-      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718" alt="" aria-hidden="true">
-      <div class="steam-content d-flex flex-column align-items-start">
-        <h2 id="steam-title">PEAK na Steam</h2>
-        <p>Confira o jogo e prepare-se para escalar. O link da página será adicionado em breve.</p>
-        <button class="placeholder-button" type="button" data-placeholder="Steam">Ver página na Steam</button>
-        <span class="placeholder-status" aria-live="polite"></span>
+    <section class="game-overview" aria-labelledby="about-game-title">
+      <img class="game-overview-image" th:src="@{/images/home/about-game.png}" alt="" aria-hidden="true">
+      <div class="game-overview-copy">
+        <h2 id="about-game-title">Sobre o jogo</h2>
+        <p>Explore uma montanha selvagem em equipe, reúna recursos, enfrente perigos constantes e supere os biomas mais extremos para alcançar o topo.</p>
       </div>
     </section>
+
+    <a href="https://store.steampowered.com/app/3527290/PEAK/" class="steam-promo-btn" target="_blank" rel="noopener noreferrer">
+        <div class="steam-promo-text">
+            Visite também a<br>página na Steam
+        </div>
+        <div class="steam-icon-container">
+            <img th:src="@{/images/home/steam-icon.png}" alt="Logo da Steam" class="steam-logo-img">
+        </div>
+    </a>
   </main>
 
   <div th:replace="~{fragments/footer :: siteFooter}"></div>
