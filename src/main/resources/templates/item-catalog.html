@@ -22,9 +22,9 @@
       <h2 id="catalog-summary-title">Sumário</h2>
       <ol>
         <li th:each="section, iterStat : ${catalog.sections}">
-          <a th:href="|#${section.id}|">
-            <span class="summary-number" th:text="|${iterStat.count}.|">1.</span>
-            <span th:text="${section.title}">Categoria</span>
+          <span class="summary-number" aria-hidden="true" th:text="|${iterStat.count}.|">1.</span>
+          <a class="summary-link" th:href="|#${section.id}|">
+            <span class="summary-label" th:text="${section.summaryTitle}">Categoria</span>
           </a>
         </li>
       </ol>

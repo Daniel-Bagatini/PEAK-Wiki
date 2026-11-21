@@ -234,6 +234,16 @@ public class ItemCatalogController {
 	}
 
 	public record ItemSection(String id, String title, List<CatalogItem> items) {
+		/** Nome curto exibido nos botões do sumário (conforme o design do Figma). */
+		public String summaryTitle() {
+			return switch (id) {
+				case "especiais" -> "Especiais";
+				case "coletivos" -> "Equipe";
+				case "individuais" -> "Solo";
+				case "miticos" -> "Míticos";
+				default -> title;
+			};
+		}
 	}
 
 	public record CatalogItem(String name, List<String> images, String effect, String cookedEffect,
