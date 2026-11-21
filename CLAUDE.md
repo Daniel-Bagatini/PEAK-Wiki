@@ -33,6 +33,7 @@ Site em Spring Boot 4 + Thymeleaf + Bootstrap 5.3 (Java 25, Maven).
 - Exceção já aprovada: **Nunito Sans**. Ela pode continuar sendo usada onde já está.
 
 ## Git
+- O remoto se chama **`PEAK-Wiki`**, não `origin`. Para enviar a branch atual: `git push PEAK-Wiki <branch>`.
 - Commits em **português**, com o verbo no presente da 3ª pessoa e uma frase curta que diz o que mudou. Exemplos: "Implementa…", "Corrige…", "Ajusta…", "Converte…".
 - Só faça commit quando eu pedir. Eu reviso as alterações antes.
 - Nunca faça commit direto na `main`. Trabalhe em uma branch com nome descritivo em português (ex.: `otimiza-imagens-webp`).
