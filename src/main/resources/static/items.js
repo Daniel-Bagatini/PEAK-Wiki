@@ -10,5 +10,8 @@ if (itemDialog && itemTrigger) {
       itemDialog.close();
     }
   });
-  itemTrigger.addEventListener("click", () => itemDialog.showModal());
+  itemTrigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    itemDialog.showModal();
+  });
 }
