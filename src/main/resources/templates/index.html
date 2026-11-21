@@ -48,8 +48,6 @@
           </button>
         </div>
         <div class="biome-indicators" role="group" aria-label="Escolher bioma">
-          <img th:src="@{/images/biomes/indicadores.svg}" alt="" aria-hidden="true">
-          <span class="biome-indicator-first" aria-hidden="true"></span>
           <span class="biome-indicator-current" aria-hidden="true"></span>
           <button th:each="biome, iterStat : ${biomes}"
                   type="button"

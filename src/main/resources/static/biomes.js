@@ -13,7 +13,6 @@ if (dialog) {
   const track = dialog.querySelector("[data-biome-track]");
   const indicators = [...dialog.querySelectorAll("[data-biome-indicator]")];
   const currentIndicator = dialog.querySelector(".biome-indicator-current");
-  const firstIndicator = dialog.querySelector(".biome-indicator-first");
   const biomes = [...track.querySelectorAll(".biome-slide")];
   let selectedIndex = 0;
 
@@ -40,8 +39,7 @@ if (dialog) {
       track.offsetHeight;
       requestAnimationFrame(() => track.style.removeProperty("transition"));
     }
-    currentIndicator.style.transform = `translateX(${selectedIndex * 35}px)`;
-    firstIndicator.hidden = selectedIndex === 0;
+    currentIndicator.style.transform = `translateX(${indicators[selectedIndex].offsetLeft}px)`;
 
     indicators.forEach((indicator, position) => {
       indicator.setAttribute("aria-pressed", String(position === selectedIndex));
@@ -77,8 +75,8 @@ if (dialog) {
   });
 
   document.querySelector("#biomas").addEventListener("click", () => {
-    showBiome(selectedIndex);
     dialog.showModal();
+    showBiome(selectedIndex);
   });
 
   window.addEventListener("resize", () => {

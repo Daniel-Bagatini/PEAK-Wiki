@@ -392,60 +392,48 @@
     }
 
     .biome-indicators {
+      --indicator-size: 22px;
+      --indicator-gap: 13px;
       position: relative;
-      flex: 0 0 22px;
+      display: flex;
+      flex: 0 0 var(--indicator-size);
       align-self: center;
-      width: 232px;
-      height: 22px;
+      gap: var(--indicator-gap);
+      max-width: 100%;
+      height: var(--indicator-size);
       margin: auto auto 18px;
     }
 
-    .biome-indicators > img {
-      display: block;
-      width: 232px;
-      height: 22px;
-    }
-
-    .biome-indicator-current,
-    .biome-indicator-first {
+    .biome-indicator-current {
       position: absolute;
       top: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .biome-indicator-current {
       left: 0;
+      z-index: 1;
+      width: var(--indicator-size);
+      height: var(--indicator-size);
+      border-radius: 50%;
       background: #ddca40;
+      pointer-events: none;
       transition: transform 220ms ease;
     }
 
-    .biome-indicator-first {
-      left: 0;
-      background: #9a9583;
-    }
-
     .biome-indicators button {
-      position: absolute;
-      top: -6px;
-      width: 34px;
-      height: 34px;
+      position: relative;
+      flex: 0 0 var(--indicator-size);
+      width: var(--indicator-size);
+      height: var(--indicator-size);
       padding: 0;
       border: 0;
       border-radius: 50%;
-      background: transparent;
+      background: #9a9583;
       cursor: pointer;
     }
 
-    .biome-indicators button:nth-of-type(1) { left: 0; }
-    .biome-indicators button:nth-of-type(2) { left: 35px; }
-    .biome-indicators button:nth-of-type(3) { left: 70px; }
-    .biome-indicators button:nth-of-type(4) { left: 105px; }
-    .biome-indicators button:nth-of-type(5) { left: 140px; }
-    .biome-indicators button:nth-of-type(6) { left: 175px; }
-    .biome-indicators button:nth-of-type(7) { left: 210px; }
+    .biome-indicators button::before {
+      position: absolute;
+      inset: -6px;
+      content: "";
+    }
 
     .category-grid {
       display: grid;
@@ -800,6 +788,19 @@
       text-shadow: none;
     }
 
+    .wiki-credit {
+      flex: 0 0 100%;
+      margin: 0;
+      color: #b5b5b5;
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .wiki-credit a {
+      color: #e4e4e4;
+    }
+
     .creator-list {
       display: grid;
       flex: 1;
@@ -972,6 +973,7 @@
       }
 
       .biome-indicators {
+        --indicator-gap: 8px;
         margin-bottom: 20px;
       }
 

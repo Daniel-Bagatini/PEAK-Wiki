@@ -327,6 +327,43 @@
   color: #079ec4;
 }
 
+.effect-dot.effect-spores {
+  background: #d8569c;
+}
+
+.hazard-effect.effect-sleep,
+.hazard-effect.effect-energy {
+  background: none;
+}
+
+.hazard-effect.effect-spores {
+  color: #c2327f;
+}
+
+.hazard-effect.effect-sleep {
+  color: #c43a9b;
+}
+
+.hazard-effect.effect-energy {
+  color: #6f8d12;
+}
+
+.hazard-effect.effect-neutral {
+  color: #4f4f4f;
+}
+
+.hazard-effect.effect-web {
+  color: #6b6b6b;
+}
+
+.hazard-effect.effect-petrify {
+  color: #8a6d3b;
+}
+
+.hazard-effect.effect-arrow {
+  color: #b5651d;
+}
+
 .arrival-card {
   display: grid;
   width: min(72%, 737px);
