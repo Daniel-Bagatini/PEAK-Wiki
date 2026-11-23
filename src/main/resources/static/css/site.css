@@ -788,19 +788,6 @@
       text-shadow: none;
     }
 
-    .wiki-credit {
-      flex: 0 0 100%;
-      margin: 0;
-      color: #b5b5b5;
-      font-family: "Nunito Sans", sans-serif;
-      font-size: 0.8rem;
-      text-align: center;
-    }
-
-    .wiki-credit a {
-      color: #e4e4e4;
-    }
-
     .creator-list {
       display: grid;
       flex: 1;

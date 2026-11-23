@@ -190,6 +190,18 @@
   scroll-margin-top: 24px;
 }
 
+.wiki-credit {
+  margin: -20px 0 0;
+  color: #b5b5b5;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.wiki-credit a {
+  color: #e4e4e4;
+}
+
 .catalog-section-title {
   margin: 0;
   padding: 7px 18px 10px;
