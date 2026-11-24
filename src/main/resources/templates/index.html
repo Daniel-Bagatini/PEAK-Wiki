@@ -33,7 +33,7 @@
             <a class="biome-slide"
                th:each="biome : ${biomes}"
                th:href="@{/biomas/{slug}(slug=${biome.slug})}"
-               th:attr="aria-label=|Abrir página do bioma ${biome.name}|"
+               th:attr="aria-label=|Abrir página do bioma ${biome.name}|,data-secret-of=${biome.secretOf}"
                tabindex="-1">
               <img th:src="${biome.cardImagePath()}"
                    th:attr="alt=|Paisagem do bioma ${biome.name}|,loading=${biome.number < 3 ? 'eager' : 'lazy'},decoding='async'">
@@ -52,6 +52,19 @@
           <button th:each="biome, iterStat : ${biomes}"
                   type="button"
                   th:attr="aria-label=${biome.name},data-biome-indicator=${iterStat.index},aria-pressed=${iterStat.first}"></button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="secret-dialog" id="secret-dialog" aria-labelledby="secret-dialog-title">
+      <div class="secret-dialog-frame">
+        <p class="secret-dialog-text">
+          <span id="secret-dialog-title">Este é um local secreto do bioma</span>
+          <button class="secret-reveal" type="button" aria-label="Revelar o bioma deste local secreto"></button>
+        </p>
+        <div class="secret-actions">
+          <button class="secret-close" type="button">Cancelar</button>
+          <a class="secret-enter" href="#" aria-disabled="true" tabindex="-1">Entrar</a>
         </div>
       </div>
     </dialog>

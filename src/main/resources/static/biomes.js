@@ -85,3 +85,60 @@ if (dialog) {
 
   showBiome(0);
 }
+
+const secretDialog = document.querySelector("#secret-dialog");
+
+if (secretDialog) {
+  const track = document.querySelector("#biome-dialog [data-biome-track]");
+  const reveal = secretDialog.querySelector(".secret-reveal");
+  const enter = secretDialog.querySelector(".secret-enter");
+  let biomeName = "";
+
+  /** Abre o aviso com a tarja fechada e o "Entrar" bloqueado. */
+  function openWarning(slide) {
+    biomeName = slide.dataset.secretOf;
+    reveal.textContent = "";
+    reveal.classList.remove("is-revealed");
+    reveal.setAttribute("aria-label", "Revelar o bioma deste local secreto");
+    enter.href = slide.href;
+    enter.setAttribute("aria-disabled", "true");
+    enter.tabIndex = -1;
+    enter.removeAttribute("aria-label");
+    secretDialog.showModal();
+    reveal.focus();
+  }
+
+  track.addEventListener("click", (event) => {
+    const slide = event.target.closest(".biome-slide[data-secret-of]");
+    if (slide) {
+      event.preventDefault();
+      openWarning(slide);
+    }
+  });
+
+  reveal.addEventListener("click", () => {
+    if (reveal.classList.contains("is-revealed")) {
+      return;
+    }
+    reveal.textContent = biomeName;
+    reveal.classList.add("is-revealed");
+    reveal.removeAttribute("aria-label");
+    enter.removeAttribute("aria-disabled");
+    enter.removeAttribute("tabindex");
+    enter.setAttribute("aria-label", `Entrar no local secreto do bioma ${biomeName}`);
+  });
+
+  enter.addEventListener("click", (event) => {
+    if (enter.getAttribute("aria-disabled") === "true") {
+      event.preventDefault();
+    }
+  });
+
+  secretDialog.querySelector(".secret-close").addEventListener("click", () => secretDialog.close());
+
+  secretDialog.addEventListener("click", (event) => {
+    if (event.target === secretDialog) {
+      secretDialog.close();
+    }
+  });
+}

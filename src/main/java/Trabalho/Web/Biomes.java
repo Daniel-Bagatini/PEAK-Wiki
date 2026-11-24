@@ -218,7 +218,34 @@ public final class Biomes {
 									"A dinamite acende quando um escoteiro se aproxima e explode pouco depois, causando dano e empurrando jogadores próximos.",
 									"imgImage220.webp", "DANO")),
 					List.of()),
-			new Biome("Caldeira", "caldeira", "caldeira.webp", 6,
+			new Biome("Tumba", "tumba", "tumba.webp", 6,
+					"imgImage167.webp", "titulo.webp",
+					"A Tumba em PEAK é um local secreto escondido na Mesa. A entrada fica no planalto da primeira metade do bioma, antes do cânion, e só aparece em algumas partidas: ela abre em cerca de 50% das vezes e ainda pode estar bloqueada por terreno. Lá dentro, os escoteiros descem por um fosso, passam por um labirinto bloqueado por rochas e por uma câmara escura sem chão e chegam a uma sala com o Ídolo ancião. Não há comidas nem perigos próprios, e a névoa não sobe dentro da Tumba.",
+					List.of(), List.of(), List.of(),
+					List.of(
+							feature("Entrada",
+									"Uma abertura no meio de um grande monte de terra leva a um fosso profundo, que precisa ser escalado até a abertura da Tumba. Dentro há um grande salão com uma rampa que desce até o labirinto, uma tocha acima da rampa e duas tochas apagadas que podem ser pegas e acesas. Várias estátuas anciãs, que não podem ser usadas, enfeitam o salão.",
+									"entrada.webp"),
+							feature("Labirinto",
+									"O primeiro obstáculo: corredores quase todos bloqueados por rochas e terreno. Os escoteiros precisam se espremer entre as pedras para achar o caminho certo, que termina num corredor bem estreito, com outra tocha, ligado à Câmara do Desafio.",
+									"labirinto.webp"),
+							feature("Câmara do Desafio",
+									"O principal obstáculo: um fosso enorme e escuro em que o único chão são pedras que saem das paredes. Do outro lado há uma porta grande, parecida com a da entrada, que leva por uma rampa até a Sala do Ídolo. Quem não conseguir atravessar pode voltar pelo caminho de entrada.",
+									"camara-do-desafio.webp"),
+							feature("Sala do Ídolo",
+									"Uma sala ampla com uma plataforma suspensa, dominada por uma estátua anciã gigante de mãos abertas. No centro da plataforma, sobre um pedestal, fica o Ídolo ancião. Sob a rampa de entrada da sala há outra rampa, que leva à saída da Tumba.",
+									"sala-do-idolo.webp"),
+							feature("Saída",
+									"Um corredor estreito sobe até degraus largos, parecidos com o templo da Caldeira. No topo, uma porta retangular entalhada na lateral do cenário leva de volta à superfície da Mesa.",
+									"saida.webp"),
+							feature("Dicas",
+									"Lançadores de Corrente e Pitons ajudam a vencer a Câmara do Desafio, principalmente com pouca stamina. Se um buraco do labirinto for pequeno demais, tente passar correndo na direção dele enquanto pega um item, como uma Mochila. Tenha paciência: a névoa não sobe dentro da Tumba.",
+									"dicas.webp"),
+							feature("Curiosidades",
+									"A Tumba é o único local que não é um bioma a ter uma tela de título ao ser aberto. Enquanto você está lá dentro, o Steam mostra \"Surviving the Mesa\".",
+									"curiosidades.webp")),
+					"Mesa"),
+			new Biome("Caldeira", "caldeira", "caldeira.webp", 7,
 					"imgImage167.webp", "imgImage74.webp",
 					"O bioma Caldeira em PEAK é uma área de alto nível do jogo, com rochas vulcânicas escuras, rios de lava incandescentes e uma atmosfera sufocante. O calor escaldante e a atividade sísmica tornam a escalada extremamente difícil, pois o chão de lava causa queimaduras e a fumaça vulcânica reduz a visibilidade.",
 					List.of(
@@ -235,7 +262,7 @@ public final class Biomes {
 									"Uma aproximação descuidada pode liberar veneno. Observe o terreno e mantenha distância do cogumelo.",
 									"imgImage220.webp", "VENENO")),
 					List.of()),
-			new Biome("Melancolia", "melancolia", "melancolia.webp", 7,
+			new Biome("Melancolia", "melancolia", "melancolia.webp", 8,
 					"imgImage167.webp", "titulo.webp",
 					"O bioma Melancolia em PEAK é um pântano assombrado coberto por uma névoa roxa, de onde se veem fantasmas subindo. É uma das duas opções para o quarto trecho da escalada, no lugar da Caldeira, e é o único caminho até a Cidadela, a torre gigante que domina a paisagem. A névoa causa sonolência em quem fica dentro dela por muito tempo, então a travessia é feita pulando entre ilhas, árvores e cipós. Acender a fogueira no salão de entrada da Cidadela dissipa a barreira de névoa e libera o próximo bioma.",
 					List.of(
@@ -290,7 +317,7 @@ public final class Biomes {
 							feature("Entrada da Cidadela",
 									"Uma escadaria em ruínas leva ao salão de entrada, com a fogueira no centro. À esquerda há uma sala com uma estátua anciã ou um item místico; à direita, três bagagens protegidas por uma armadilha de flechas, que exige passar agachado.",
 									"entrada-da-cidadela.webp"))),
-			new Biome("O Forno", "o-forno", "forno.png", 8,
+			new Biome("O Forno", "o-forno", "forno.png", 9,
 					"imgImage167.webp", "imgImage74.webp",
 					"O bioma Forno em PEAK é a área mais quente do jogo, com rochas vulcânicas avermelhadas, gêiseres de vapor e uma atmosfera sufocante. O calor opressor e os gases tóxicos tornam a escalada extremamente difícil: o chão quente causa dano de fogo e o vapor exige cautela para evitar queimaduras.",
 					List.of(),
@@ -302,7 +329,7 @@ public final class Biomes {
 									"A lava sobe progressivamente e aquece as rochas próximas. Mantenha a progressão vertical para escapar do calor.",
 									"imgImage303.webp", "QUEIMADURA")),
 					List.of()),
-			new Biome("Cidadela", "cidadela", "cidadela.webp", 9,
+			new Biome("Cidadela", "cidadela", "cidadela.webp", 10,
 					"imgImage167.webp", "titulo.webp",
 					"O bioma Cidadela em PEAK é o interior de uma torre altíssima, cheia de armadilhas e estruturas em ruínas. Ela só aparece depois da Melancolia e ocupa o quinto trecho da escalada, no lugar do Forno. A torre tem um pilar central, mais fácil de escalar mas com mais armadilhas e bagagens, e uma parede externa quase sem armadilhas, mas com menos apoios. Não há fogueira nem comida natural no caminho: o topo leva direto ao Pico. A partir da ascensão Pico, a névoa sonolenta sobe da base da torre e obriga o grupo a se apressar.",
 					List.of(),
@@ -354,7 +381,7 @@ public final class Biomes {
 							feature("Topo da torre",
 									"O último andar é uma plataforma desgastada cercada por estátuas douradas, incluindo uma do Chefe Escoteiro. Um arco com uma estrela no alto leva ao Pico.",
 									"topo-da-torre.webp"))),
-			new Biome("Pico", "pico", "pico.webp", 10,
+			new Biome("Pico", "pico", "pico.webp", 11,
 					"imgImage167.webp", "imgImage74.webp",
 					"O Pico em PEAK é o estágio final do jogo, caracterizado por uma subida vertical final, um campo de flores vibrante e um grande sol preenchendo o céu. A área exige a gestão perfeita dos últimos recursos para manter a stamina. É o local ideal para focar na precisão de cada agarre e usar a resistência mental para alcançar o ponto final e a glória da escalada.",
 					List.of(), List.of(),
@@ -364,7 +391,54 @@ public final class Biomes {
 									"imgImage299.webp", "Bandeira azul no campo de flores do Pico"),
 							new ArrivalSection(
 									"No ponto mais alto, a recompensa é a Bandeira do Escoteiro. Ao lado dela, uma caixa de resgate contém o sinalizador que finaliza a expedição. Após a contagem regressiva, todos os escoteiros sobreviventes aparecem juntos para celebrar a chegada.",
-									"imgImage300.webp", "Escoteiros celebrando a chegada ao Pico"))));
+									"imgImage300.webp", "Escoteiros celebrando a chegada ao Pico"))),
+			new Biome("Nadir", "nadir", "nadir.webp", 12,
+					"imgImage167.webp", "titulo.webp",
+					"O Nadir em PEAK é o bioma secreto e o último trecho da jornada, depois do Pico. É uma ilha monocromática cercada por um vazio negro sem fim, que parece um pós-vida ou um submundo. Ao entrar, toda a fome e a petrificação dos escoteiros são removidas, os escoteiros mortos revivem e a petrificação é definida em 20. Assim como o Pico, o Nadir não tem fogueira nem estátua anciã. Para chegar lá, é preciso entregar os quatro amuletos ao Escoteiro de Pedra atrás do Pico e ativar a Honra do escoteiro. Escapar dá a Insígnia da Regra Zero a todos os escoteiros, sobreviventes ou não, e mostra o final secreto. Na ascensão 8, entrar no Nadir e escapar é obrigatório para vencer.",
+					List.of(),
+					List.of(
+							hazard("Almas Perdidas",
+									"Um líquido preto como tinta, cheio de fantasmas de escoteiros que voam para cima. Ele sobe da Falsa Costa pela subida, mais rápido que os outros limites de tempo do jogo, como a névoa e a lava. Quem fica submerso ganha petrificação aos poucos; quem afunda demais leva de uma vez um ferimento enorme e morre na hora. Na ascensão Tenderfoot, o aviso de que as almas estão subindo ainda aparece, mas o efeito é desligado e elas nunca causam petrificação nem ferimento.",
+									"almas-perdidas.webp", "PETRIFICAÇÃO")),
+					List.of(
+							new ArrivalSection(
+									"Os escoteiros sobreviventes caem no Pico, de noite, e olham para a bandeira. Um deles pega um sinalizador numa caixa. A mão esquelética e verde do Chefe Escoteiro surge sobre a crista e, quando as pedras desmoronam, ele cai. O escoteiro anfitrião agarra a mão dele e os outros o puxam para cima. A alma do Chefe Escoteiro volta ao corpo, os olhos dele brilham e as íris ficam humanas. Um sinalizador caído se acende e solta fumaça vermelha, um helicóptero de resgate chega e os escoteiros e o Chefe Escoteiro batem continência. Ele embarca e se vira para a câmera.",
+									"final-secreto-1.webp", "Escoteiros ajudando o Chefe Escoteiro a subir no final secreto"),
+							new ArrivalSection(
+									"Depois da cena vem o Relatório de Escoteiros, que mostra a seção do Nadir a 1920 metros abaixo do solo, antes da parte das insígnias e dos créditos.",
+									"final-secreto-2.webp", "Relatório de Escoteiros depois do final secreto")),
+					List.of(
+							feature("Falsa Costa",
+									"Os escoteiros chegam a uma praia com um veleiro quebrado sobre as rochas. Em frente ao ponto de chegada ficam três bagagens de explorador e uma escada que leva a uma plataforma de pedra.",
+									"falsa-costa.webp"),
+							feature("Alma do Chefe Escoteiro",
+									"Subindo os degraus, aparece o Chefe Escoteiro Myres preso numa bolha verde. Qualquer escoteiro pode se comunicar com ele: a bolha se quebra, a alma dele sobe, gira em volta de quem a tocou e revela a Falsa Subida.",
+									"alma-do-chefe-escoteiro.webp"),
+							feature("Falsa Subida",
+									"Uma versão quebrada e distorcida do penhasco da Costa, com elementos de outros biomas. As Almas Perdidas começam a subir assim que ela é revelada. Nenhum item aparece naturalmente, a não ser um Bing Bong dentro de um avião caído.",
+									"falsa-subida.webp"),
+							feature("Anti-esferas",
+									"Idênticas às criadas pelo Anti-Zooka, elas invertem a gravidade de escoteiros e itens dentro delas, o que facilita a subida.",
+									"anti-esferas.webp"),
+							feature("Pontes monocromáticas",
+									"Parecidas com as pontes da Costa, mas nunca quebram.",
+									"pontes-monocromaticas.webp"),
+							feature("Correntes monocromáticas",
+									"Como as correntes da Caldeira: agarre-se a elas para atravessar vãos gastando menos stamina.",
+									"correntes-monocromaticas.webp"),
+							feature("Escadas retorcidas",
+									"Parecidas com as escadas da Cidadela, gastam menos stamina na subida.",
+									"escadas-retorcidas.webp"),
+							feature("O Portal",
+									"No alto da Falsa Subida há uma plataforma com o Portal, que leva de volta ao Pico. Um único sinalizador fica ao lado dele. Interagir com o Portal inicia o final secreto.",
+									"portal.webp"),
+							feature("Dicas",
+									"As Anti-esferas ajudam a alcançar plataformas mais altas. Se você achar uma Corneta do Chefe Escoteiro antes de entrar, pode usá-la depois que a Falsa Subida for revelada para ganhar stamina extra. Terminar a subida do Nadir permite completar as ascensões 4 e superiores sem sinalizador.",
+									"dicas.webp"),
+							feature("Curiosidades",
+									"\"Nadir\" é o termo da astronomia para o ponto bem abaixo de quem observa, e também significa o ponto mais baixo do ânimo. Ao entrar, a tela mostra \"Dia ???\", e o Steam mostra \"At the PEAK\", porque o Nadir é o único bioma sem texto próprio. O Portal mostra o Pico de dia, mas a cena final é sempre à noite.",
+									"curiosidades.webp")),
+					"Pico"));
 
 	private Biomes() {
 	}
@@ -399,13 +473,21 @@ public final class Biomes {
 		return new Hazard(title, description, image, effect, effectClass);
 	}
 
+	/** {@code secretOf} é o nome do bioma a que um local secreto pertence; é nulo nos biomas comuns. */
 	public record Biome(String name, String slug, String image, int number, String backdrop, String banner,
 			String description, List<Food> foods, List<Hazard> hazards, List<ArrivalSection> arrival,
-			List<Feature> features) {
-		/** Biomas sem a seção de estruturas. */
+			List<Feature> features, String secretOf) {
+		/** Biomas comuns, com a seção de estruturas. */
+		public Biome(String name, String slug, String image, int number, String backdrop, String banner,
+				String description, List<Food> foods, List<Hazard> hazards, List<ArrivalSection> arrival,
+				List<Feature> features) {
+			this(name, slug, image, number, backdrop, banner, description, foods, hazards, arrival, features, null);
+		}
+
+		/** Biomas comuns, sem a seção de estruturas. */
 		public Biome(String name, String slug, String image, int number, String backdrop, String banner,
 				String description, List<Food> foods, List<Hazard> hazards, List<ArrivalSection> arrival) {
-			this(name, slug, image, number, backdrop, banner, description, foods, hazards, arrival, List.of());
+			this(name, slug, image, number, backdrop, banner, description, foods, hazards, arrival, List.of(), null);
 		}
 
 		/** Caminhos que começam com "/" já são absolutos; os demais ficam na pasta do bioma. */

@@ -67,7 +67,7 @@ class WebApplicationTests {
 	void rendersSharedFooterDiscordLinksOnEveryPage() throws Exception {
 		String[] routes = {
 				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
-				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela", "/itens/comidas",
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela", "/biomas/tumba", "/biomas/nadir", "/itens/comidas",
 				"/itens/equipamentos", "/insignias"
 		};
 		String[] profileLinks = {
@@ -82,13 +82,27 @@ class WebApplicationTests {
 					.andExpect(content().string(containsString("Perfil de .Henry_006. no Discord")))
 					.andExpect(content().string(containsString("Perfil de Lulu no Discord")))
 					.andExpect(content().string(containsString("Perfil de Rogwerz no Discord")))
-					.andExpect(content().string(containsString("Informações e imagens adaptadas da")))
-					.andExpect(content().string(containsString("href=\"https://peak.wiki.gg\"")))
 					.andReturn();
 			String html = page.getResponse().getContentAsString();
 			for (String profileLink : profileLinks) {
 				org.junit.jupiter.api.Assertions.assertTrue(html.contains("href=\"" + profileLink + "\""));
 			}
+		}
+	}
+
+	@Test
+	void showsWikiCreditOnlyOnItemPages() throws Exception {
+		for (String route : new String[] { "/itens/comidas", "/itens/equipamentos" }) {
+			mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andExpect(content().string(containsString("class=\"wiki-credit\"")))
+					.andExpect(content().string(containsString("Informações e imagens adaptadas da")))
+					.andExpect(content().string(containsString("href=\"https://peak.wiki.gg\"")));
+		}
+		for (String route : new String[] { "/", "/biomas/costa", "/insignias" }) {
+			mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("wiki-credit"))));
 		}
 	}
 
@@ -124,7 +138,9 @@ class WebApplicationTests {
 				{ "pico", "Pico" },
 				{ "raizes", "Raízes" },
 				{ "melancolia", "Melancolia" },
-				{ "cidadela", "Cidadela" }
+				{ "cidadela", "Cidadela" },
+				{ "tumba", "Tumba" },
+				{ "nadir", "Nadir" }
 		};
 
 		for (String[] biome : biomes) {
@@ -140,6 +156,8 @@ class WebApplicationTests {
 					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
 			if (biome[0].equals("pico")) {
 				page.andExpect(content().string(containsString("A CHEGADA")));
+			} else if (biome[0].equals("tumba")) {
+				page.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")));
 			} else {
 				page.andExpect(content().string(containsString("PERIGOS DO BIOMA")));
 			}
@@ -160,7 +178,8 @@ class WebApplicationTests {
 	void allHomepageAndBiomeImageSourcesResolve() throws Exception {
 		String[] routes = {
 				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
-				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela"
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela",
+				"/biomas/tumba", "/biomas/nadir"
 		};
 		Pattern imageSource = Pattern.compile("src=\"(/images/[^\"]+)\"");
 		Pattern backgroundImage = Pattern.compile("url\\((/images/[^)]+)\\)");
@@ -220,8 +239,51 @@ class WebApplicationTests {
 	}
 
 	@Test
+	void rendersSecretLocationPages() throws Exception {
+		mockMvc.perform(get("/biomas/tumba"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("biome-detail"))
+				.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")))
+				.andExpect(content().string(containsString("Câmara do Desafio")))
+				.andExpect(content().string(containsString("Sala do Ídolo")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("PERIGOS DO BIOMA"))));
+		mockMvc.perform(get("/biomas/nadir"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("biome-detail"))
+				.andExpect(content().string(containsString("PERIGOS DO BIOMA")))
+				.andExpect(content().string(containsString("Almas Perdidas")))
+				.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")))
+				.andExpect(content().string(containsString("A CHEGADA")));
+	}
+
+	@Test
+	void homeAsksBeforeOpeningSecretLocations() throws Exception {
+		String html = mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("id=\"secret-dialog\"")))
+				.andExpect(content().string(containsString("Este é um local secreto do bioma")))
+				.andExpect(content().string(containsString("class=\"secret-reveal\"")))
+				.andExpect(content().string(containsString("class=\"secret-enter\"")))
+				.andExpect(content().string(containsString("Entrar")))
+				.andExpect(content().string(containsString("Cancelar")))
+				.andExpect(content().string(containsString("data-secret-of=\"Mesa\"")))
+				.andExpect(content().string(containsString("data-secret-of=\"Pico\"")))
+				.andReturn().getResponse().getContentAsString();
+		assertEquals(2, html.split("data-secret-of=", -1).length - 1);
+	}
+
+	@Test
+	void biomePagesDoNotShowTheSpoilerDialog() throws Exception {
+		for (String slug : new String[] { "costa", "mesa", "tumba", "nadir", "pico" }) {
+			mockMvc.perform(get("/biomas/{slug}", slug))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("secret-dialog"))));
+		}
+	}
+
+	@Test
 	void biomesAreNumberedInGameOrder() {
-		String[] slugs = { "costa", "tropico", "raizes", "alpes", "mesa", "caldeira", "melancolia", "o-forno", "cidadela", "pico" };
+		String[] slugs = { "costa", "tropico", "raizes", "alpes", "mesa", "tumba", "caldeira", "melancolia", "o-forno", "cidadela", "pico", "nadir" };
 		assertEquals(slugs.length, Biomes.ALL.size());
 		for (int i = 0; i < slugs.length; i++) {
 			assertEquals(slugs[i], Biomes.ALL.get(i).slug());
@@ -288,7 +350,7 @@ class WebApplicationTests {
 		String html = mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andReturn().getResponse().getContentAsString();
-		String[] order = { "costa", "tropico", "raizes", "alpes", "mesa", "caldeira", "melancolia", "o-forno", "cidadela", "pico" };
+		String[] order = { "costa", "tropico", "raizes", "alpes", "mesa", "tumba", "caldeira", "melancolia", "o-forno", "cidadela", "pico", "nadir" };
 		int previous = -1;
 		for (String slug : order) {
 			int position = html.indexOf("/biomas/" + slug + "\"");
