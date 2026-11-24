@@ -106,6 +106,9 @@ final class ImagePaths {
 			Map.entry("/images/biome-pages/tropico/img64PxChubbyShroom1.webp", "/images/biome-pages/costa/img64PxChubbyShroom1.webp"),
 			Map.entry("/images/biome-pages/caldeira/imgRectangle7.svg", "/images/biome-pages/alpes/imgRectangle7.svg"),
 			Map.entry("/images/biome-pages/o-forno/imgRectangle7.svg", "/images/biome-pages/alpes/imgRectangle7.svg"),
+			Map.entry("/images/biome-pages/raizes/imgRectangle7.svg", "/images/biome-pages/alpes/imgRectangle7.svg"),
+			Map.entry("/images/biome-pages/melancolia/imgRectangle7.svg", "/images/biome-pages/alpes/imgRectangle7.svg"),
+			Map.entry("/images/biome-pages/cidadela/imgRectangle7.svg", "/images/biome-pages/alpes/imgRectangle7.svg"),
 			Map.entry("/images/home/card-badges-left.png", "/images/badges/image-7.webp"));
 
 	private ImagePaths() {

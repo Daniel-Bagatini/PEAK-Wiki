@@ -71,6 +71,21 @@
       </div>
     </section>
 
+    <section class="biome-dangers biome-features" aria-labelledby="biome-features-title" th:if="${!#lists.isEmpty(biome.features)}">
+      <h2 id="biome-features-title">ESTRUTURAS DO BIOMA</h2>
+      <div class="danger-list">
+        <article class="danger-row" th:each="feature : ${biome.features}">
+          <img class="danger-image"
+               th:src="${biome.imagePath(feature.image)}"
+               th:alt="${feature.title}">
+          <div class="danger-copy">
+            <h3 th:text="${feature.title}">Estrutura</h3>
+            <p th:text="${feature.description}">Descrição da estrutura.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="biome-arrival" aria-labelledby="biome-arrival-title" th:if="${!#lists.isEmpty(biome.arrival)}">
       <h2 id="biome-arrival-title">A CHEGADA</h2>
       <article class="arrival-card" th:each="section : ${biome.arrival}">

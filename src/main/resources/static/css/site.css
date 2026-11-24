@@ -392,60 +392,48 @@
     }
 
     .biome-indicators {
+      --indicator-size: 22px;
+      --indicator-gap: 13px;
       position: relative;
-      flex: 0 0 22px;
+      display: flex;
+      flex: 0 0 var(--indicator-size);
       align-self: center;
-      width: 232px;
-      height: 22px;
+      gap: var(--indicator-gap);
+      max-width: 100%;
+      height: var(--indicator-size);
       margin: auto auto 18px;
     }
 
-    .biome-indicators > img {
-      display: block;
-      width: 232px;
-      height: 22px;
-    }
-
-    .biome-indicator-current,
-    .biome-indicator-first {
+    .biome-indicator-current {
       position: absolute;
       top: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .biome-indicator-current {
       left: 0;
+      z-index: 1;
+      width: var(--indicator-size);
+      height: var(--indicator-size);
+      border-radius: 50%;
       background: #ddca40;
+      pointer-events: none;
       transition: transform 220ms ease;
     }
 
-    .biome-indicator-first {
-      left: 0;
-      background: #9a9583;
-    }
-
     .biome-indicators button {
-      position: absolute;
-      top: -6px;
-      width: 34px;
-      height: 34px;
+      position: relative;
+      flex: 0 0 var(--indicator-size);
+      width: var(--indicator-size);
+      height: var(--indicator-size);
       padding: 0;
       border: 0;
       border-radius: 50%;
-      background: transparent;
+      background: #9a9583;
       cursor: pointer;
     }
 
-    .biome-indicators button:nth-of-type(1) { left: 0; }
-    .biome-indicators button:nth-of-type(2) { left: 35px; }
-    .biome-indicators button:nth-of-type(3) { left: 70px; }
-    .biome-indicators button:nth-of-type(4) { left: 105px; }
-    .biome-indicators button:nth-of-type(5) { left: 140px; }
-    .biome-indicators button:nth-of-type(6) { left: 175px; }
-    .biome-indicators button:nth-of-type(7) { left: 210px; }
+    .biome-indicators button::before {
+      position: absolute;
+      inset: -6px;
+      content: "";
+    }
 
     .category-grid {
       display: grid;
@@ -972,6 +960,8 @@
       }
 
       .biome-indicators {
+        --indicator-size: 18px;
+        --indicator-gap: 7px;
         margin-bottom: 20px;
       }
 
@@ -1098,5 +1088,121 @@
       *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Aviso antes de abrir um local secreto (Tumba e Nadir) */
+    .secret-dialog {
+      width: min(700px, calc(100vw - 24px));
+      padding: 0;
+      border: 1px solid #17130e;
+      border-radius: 30px;
+      background: #d2c4a6;
+      color: #111;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .secret-dialog::backdrop {
+      background: rgba(5, 7, 6, 0.76);
+      backdrop-filter: blur(5px);
+    }
+
+    .secret-dialog-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 38px 28px 28px;
+      text-align: center;
+    }
+
+    .secret-dialog-text {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 14px;
+      margin: 0;
+      font-family: "Darumadrop One", cursive;
+      font-size: clamp(1.3rem, 3.6vw, 1.75rem);
+      line-height: 1.15;
+    }
+
+    .secret-reveal {
+      min-width: 7.5rem;
+      min-height: 2.7rem;
+      padding: 2px 16px;
+      border: 3px solid #17130e;
+      border-radius: 10px;
+      background: #111;
+      color: #111;
+      cursor: pointer;
+      font-family: "Bangers", cursive;
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .secret-reveal.is-revealed {
+      background: #efe4c6;
+      cursor: default;
+    }
+
+    .secret-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .secret-enter {
+      padding: 6px 32px;
+      border: 3px solid rgba(23, 19, 14, 0.25);
+      border-radius: 12px;
+      background: #efe4c6;
+      color: #111;
+      font-family: "Bangers", cursive;
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .secret-enter:hover {
+      border-color: #17130e;
+    }
+
+    .secret-enter[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .secret-reveal:focus-visible,
+    .secret-enter:focus-visible,
+    .secret-close:focus-visible {
+      outline: 3px solid #b8892b;
+      outline-offset: 3px;
+    }
+
+    .secret-close {
+      padding: 8px 26px;
+      border: 2px solid rgba(0, 0, 0, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      color: #211d16;
+      cursor: pointer;
+      font: 700 1.1rem "Nunito Sans", sans-serif;
+    }
+
+    .secret-close:hover {
+      background: #fff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .secret-enter {
+        transition: none;
       }
     }

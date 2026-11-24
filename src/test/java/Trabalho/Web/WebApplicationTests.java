@@ -50,14 +50,24 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("Rogwerz")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("brand-arrow"))))
 				.andExpect(content().string(containsString("biome-slide-name")))
-				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("biome-description"))));
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("biome-description"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("indicadores.svg"))));
+	}
+
+	@Test
+	void rendersOneIndicatorPerBiome() throws Exception {
+		String html = mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andReturn().getResponse().getContentAsString();
+		int indicators = html.split("data-biome-indicator=", -1).length - 1;
+		assertEquals(Biomes.ALL.size(), indicators);
 	}
 
 	@Test
 	void rendersSharedFooterDiscordLinksOnEveryPage() throws Exception {
 		String[] routes = {
 				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
-				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/itens/comidas",
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela", "/biomas/tumba", "/biomas/nadir", "/itens/comidas",
 				"/itens/equipamentos", "/insignias"
 		};
 		String[] profileLinks = {
@@ -77,6 +87,22 @@ class WebApplicationTests {
 			for (String profileLink : profileLinks) {
 				org.junit.jupiter.api.Assertions.assertTrue(html.contains("href=\"" + profileLink + "\""));
 			}
+		}
+	}
+
+	@Test
+	void showsWikiCreditOnlyOnItemPages() throws Exception {
+		for (String route : new String[] { "/itens/comidas", "/itens/equipamentos" }) {
+			mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andExpect(content().string(containsString("class=\"wiki-credit\"")))
+					.andExpect(content().string(containsString("Informações e imagens adaptadas da")))
+					.andExpect(content().string(containsString("href=\"https://peak.wiki.gg\"")));
+		}
+		for (String route : new String[] { "/", "/biomas/costa", "/insignias" }) {
+			mockMvc.perform(get(route))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("wiki-credit"))));
 		}
 	}
 
@@ -109,7 +135,12 @@ class WebApplicationTests {
 				{ "mesa", "Mesa" },
 				{ "caldeira", "Caldeira" },
 				{ "o-forno", "O Forno" },
-				{ "pico", "Pico" }
+				{ "pico", "Pico" },
+				{ "raizes", "Raízes" },
+				{ "melancolia", "Melancolia" },
+				{ "cidadela", "Cidadela" },
+				{ "tumba", "Tumba" },
+				{ "nadir", "Nadir" }
 		};
 
 		for (String[] biome : biomes) {
@@ -125,6 +156,8 @@ class WebApplicationTests {
 					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
 			if (biome[0].equals("pico")) {
 				page.andExpect(content().string(containsString("A CHEGADA")));
+			} else if (biome[0].equals("tumba")) {
+				page.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")));
 			} else {
 				page.andExpect(content().string(containsString("PERIGOS DO BIOMA")));
 			}
@@ -145,7 +178,8 @@ class WebApplicationTests {
 	void allHomepageAndBiomeImageSourcesResolve() throws Exception {
 		String[] routes = {
 				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
-				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico"
+				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/biomas/raizes", "/biomas/melancolia", "/biomas/cidadela",
+				"/biomas/tumba", "/biomas/nadir"
 		};
 		Pattern imageSource = Pattern.compile("src=\"(/images/[^\"]+)\"");
 		Pattern backgroundImage = Pattern.compile("url\\((/images/[^)]+)\\)");
@@ -162,6 +196,166 @@ class WebApplicationTests {
 					mockMvc.perform(get(matcher.group(1))).andExpect(status().isOk());
 				}
 			}
+		}
+	}
+
+	@Test
+	void rendersRaizesFeaturesSection() throws Exception {
+		mockMvc.perform(get("/biomas/raizes"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")))
+				.andExpect(content().string(containsString("Vento")))
+				.andExpect(content().string(containsString("Zumbis")))
+				.andExpect(content().string(containsString("Sequoias")))
+				.andExpect(content().string(containsString("Mandrágora")));
+	}
+
+	@Test
+	void rendersMelancoliaContent() throws Exception {
+		mockMvc.perform(get("/biomas/melancolia"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Névoa sonolenta")))
+				.andExpect(content().string(containsString("Fantasma gigante")))
+				.andExpect(content().string(containsString("Sinos")))
+				.andExpect(content().string(containsString("Minhoca Madrugadora")))
+				.andExpect(content().string(containsString("Cachorro-quente")));
+	}
+
+	@Test
+	void rendersCidadelaContent() throws Exception {
+		mockMvc.perform(get("/biomas/cidadela"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Armadilhas de flecha")))
+				.andExpect(content().string(containsString("Caldeirão de lava")))
+				.andExpect(content().string(containsString("Escadas douradas")));
+	}
+
+	@Test
+	void cidadelaHasNoFoodSection() throws Exception {
+		mockMvc.perform(get("/biomas/cidadela"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("CONSUMÍVEIS NATURAIS DO BIOMA"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("food-effect-legend"))));
+	}
+
+	@Test
+	void rendersSecretLocationPages() throws Exception {
+		mockMvc.perform(get("/biomas/tumba"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("biome-detail"))
+				.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")))
+				.andExpect(content().string(containsString("Câmara do Desafio")))
+				.andExpect(content().string(containsString("Sala do Ídolo")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("PERIGOS DO BIOMA"))));
+		mockMvc.perform(get("/biomas/nadir"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("biome-detail"))
+				.andExpect(content().string(containsString("PERIGOS DO BIOMA")))
+				.andExpect(content().string(containsString("Almas Perdidas")))
+				.andExpect(content().string(containsString("ESTRUTURAS DO BIOMA")))
+				.andExpect(content().string(containsString("A CHEGADA")));
+	}
+
+	@Test
+	void homeAsksBeforeOpeningSecretLocations() throws Exception {
+		String html = mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("id=\"secret-dialog\"")))
+				.andExpect(content().string(containsString("Este é um local secreto do bioma")))
+				.andExpect(content().string(containsString("class=\"secret-reveal\"")))
+				.andExpect(content().string(containsString("class=\"secret-enter\"")))
+				.andExpect(content().string(containsString("Entrar")))
+				.andExpect(content().string(containsString("Cancelar")))
+				.andExpect(content().string(containsString("data-secret-of=\"Mesa\"")))
+				.andExpect(content().string(containsString("data-secret-of=\"Pico\"")))
+				.andReturn().getResponse().getContentAsString();
+		assertEquals(2, html.split("data-secret-of=", -1).length - 1);
+	}
+
+	@Test
+	void biomePagesDoNotShowTheSpoilerDialog() throws Exception {
+		for (String slug : new String[] { "costa", "mesa", "tumba", "nadir", "pico" }) {
+			mockMvc.perform(get("/biomas/{slug}", slug))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("secret-dialog"))));
+		}
+	}
+
+	@Test
+	void biomesAreNumberedInGameOrder() {
+		String[] slugs = { "costa", "tropico", "raizes", "alpes", "mesa", "tumba", "caldeira", "melancolia", "o-forno", "cidadela", "pico", "nadir" };
+		assertEquals(slugs.length, Biomes.ALL.size());
+		for (int i = 0; i < slugs.length; i++) {
+			assertEquals(slugs[i], Biomes.ALL.get(i).slug());
+			assertEquals(i + 1, Biomes.ALL.get(i).number());
+		}
+	}
+
+	@Test
+	void nonDamagingHazardsAreNotTaggedAsDamage() {
+		java.util.Map<String, String> expected = java.util.Map.of(
+				"Besouros", "ARREMESSO",
+				"Água da Melancolia", "LENTIDÃO",
+				"Corvos trapaceiros", "VOZ");
+		for (Biomes.Biome biome : Biomes.ALL) {
+			for (Biomes.Hazard hazard : biome.hazards()) {
+				if (expected.containsKey(hazard.title())) {
+					assertEquals(expected.get(hazard.title()), hazard.effect(), hazard.title());
+				}
+			}
+		}
+	}
+
+	@Test
+	void bellringerBadgeSaysBellsAreLit() throws Exception {
+		mockMvc.perform(get("/insignias"))
+				.andExpect(content().string(containsString("Acenda 5 sinos na MELANCOLIA")));
+	}
+
+	@Test
+	void onlyYellowBananaGrowsInMelancolia() {
+		for (ItemCatalogs.ItemSection section : FoodCatalog.CATALOG.sections()) {
+			for (ItemCatalogs.CatalogItem item : section.items()) {
+				if (item.name().startsWith("Banana") && !item.name().equals("Banana amarela")) {
+					org.junit.jupiter.api.Assertions.assertFalse(item.locations().contains("Melancolia"), item.name());
+				}
+			}
+		}
+	}
+
+	@Test
+	void duplicatedEquipmentHasSameDescription() {
+		java.util.Map<String, String> seen = new java.util.HashMap<>();
+		for (ItemCatalogs.ItemSection section : EquipmentCatalog.CATALOG.sections()) {
+			for (ItemCatalogs.CatalogItem item : section.items()) {
+				String previous = seen.putIfAbsent(item.name(), item.description());
+				if (previous != null) {
+					assertEquals(previous, item.description(), item.name());
+				}
+			}
+		}
+	}
+
+	@Test
+	void oldBiomesHaveNoFeaturesSection() throws Exception {
+		for (String slug : new String[] { "costa", "tropico", "alpes", "mesa", "caldeira", "o-forno", "pico" }) {
+			mockMvc.perform(get("/biomas/{slug}", slug))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.not(containsString("ESTRUTURAS DO BIOMA"))));
+		}
+	}
+
+	@Test
+	void homeListsBiomesInGameOrder() throws Exception {
+		String html = mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andReturn().getResponse().getContentAsString();
+		String[] order = { "costa", "tropico", "raizes", "alpes", "mesa", "tumba", "caldeira", "melancolia", "o-forno", "cidadela", "pico", "nadir" };
+		int previous = -1;
+		for (String slug : order) {
+			int position = html.indexOf("/biomas/" + slug + "\"");
+			org.junit.jupiter.api.Assertions.assertTrue(position > previous, slug + " fora da ordem do jogo");
+			previous = position;
 		}
 	}
 
@@ -185,6 +379,41 @@ class WebApplicationTests {
 				.andExpect(content().string(containsString("Fórum da Comunidade")))
 				.andExpect(content().string(containsString("Siga os criadores da página no Discord")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("figma.com/api/mcp/asset"))));
+	}
+
+	@Test
+	void foodCatalogMatchesWiki() throws Exception {
+		String html = mockMvc.perform(get("/itens/comidas"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Cachorro-quente")))
+				.andExpect(content().string(containsString("Mandrágora")))
+				.andExpect(content().string(containsString("Minhoca Madrugadora")))
+				.andExpect(content().string(containsString("Pernas de sapo")))
+				.andExpect(content().string(containsString("Leite fortificado")))
+				.andExpect(content().string(containsString("Livro dos Ossos")))
+				.andExpect(content().string(containsString("Banana marrom")))
+				.andExpect(content().string(containsString("Shroomberry roxo")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("Banana laranja"))))
+				.andReturn().getResponse().getContentAsString();
+		int napberry = html.indexOf(">Napberry<");
+		org.junit.jupiter.api.Assertions.assertTrue(napberry > 0, "Napberry deve existir");
+		String napberryRow = html.substring(napberry, html.indexOf("</tr>", napberry));
+		org.junit.jupiter.api.Assertions.assertTrue(napberryRow.contains("-100 fome"), napberryRow);
+	}
+
+	@Test
+	void equipmentCatalogMatchesWiki() throws Exception {
+		mockMvc.perform(get("/itens/equipamentos"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Planador")))
+				.andExpect(content().string(containsString("Castiçal")))
+				.andExpect(content().string(containsString("Canhão de escoteiro")))
+				.andExpect(content().string(containsString("Adaga ritual")))
+				.andExpect(content().string(containsString("Ídolo ancião")))
+				.andExpect(content().string(containsString("Remédio para fungos")))
+				.andExpect(content().string(containsString("Efígie de escoteiro")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("2.25"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(containsString("Efíngie"))));
 	}
 
 	@Test
@@ -217,7 +446,14 @@ class WebApplicationTests {
 				.andReturn();
 
 		String html = page.getResponse().getContentAsString();
-		assertEquals(24, html.split("class=\"badge-card\"").length - 1);
+		assertEquals(64, html.split("class=\"badge-card\"").length - 1);
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("Insígnia do Andarilho"));
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("Insígnia do Exorcista"));
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("Náufrago"));
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("Escape da ilha sem comer nenhuma comida embalada."));
+		org.junit.jupiter.api.Assertions.assertFalse(html.contains("Naufrágo"));
+		org.junit.jupiter.api.Assertions.assertFalse(html.contains("tal coisa"));
+		org.junit.jupiter.api.Assertions.assertFalse(html.contains("CHAPADA"));
 
 		Pattern badgeImage = Pattern.compile("src=\"(/images/badges/[^\"]+)\"");
 		Matcher matcher = badgeImage.matcher(html);
@@ -228,7 +464,7 @@ class WebApplicationTests {
 					.andExpect(content().contentTypeCompatibleWith(MediaType.valueOf("image/webp")));
 			assetCount++;
 		}
-		assertEquals(30, assetCount);
+		org.junit.jupiter.api.Assertions.assertTrue(assetCount >= 64, "cada insígnia precisa de uma imagem local");
 	}
 
 	@Test
