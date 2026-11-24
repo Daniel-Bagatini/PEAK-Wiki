@@ -39,4 +39,9 @@ public class PageController {
 	public String recuperarSenha() {
 		return "recuperar-senha";
 	}
+
+	@GetMapping("/comunidade")
+	public String comunidade() {
+		return "comunidade";
+	}
 }
