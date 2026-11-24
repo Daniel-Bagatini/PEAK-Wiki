@@ -64,8 +64,19 @@
             <h3 th:text="${hazard.title}">Perigo</h3>
             <p th:text="${hazard.description}">Descrição do perigo.</p>
             <span class="hazard-effect"
-                  th:classappend="| effect-${hazard.effectClass}|"
-                  th:text="${hazard.effect}">EFEITO</span>
+                  th:classappend="| effect-${hazard.effectClass}|">
+              <span th:text="${hazard.effect}">EFEITO</span>
+              <img class="hazard-effect-icon"
+                   th:if="${hazard.effectClass == 'poison'}"
+                   th:src="@{/images/poison.webp}"
+                   alt=""
+                   aria-hidden="true">
+              <img class="hazard-effect-icon"
+                   th:if="${hazard.effectClass == 'damage'}"
+                   th:src="@{/images/damage.webp}"
+                   alt=""
+                   aria-hidden="true">
+            </span>
           </div>
         </article>
       </div>
