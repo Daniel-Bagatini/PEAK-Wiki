@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111312">
+  <title>PEAK — Comunidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Darumadrop+One&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/site.css}">
+  <link rel="stylesheet" th:href="@{/css/comunidade.css}">
+</head>
+<body class="community-page">
+  <div th:replace="~{fragments/header :: siteHeader}"></div>
+
+  <main class="community-main">
+    <h1>Comunidade</h1>
+
+    <section class="community-feed" aria-label="Publicações da comunidade">
+      <article class="community-post community-post--lukitos">
+        <div class="post-header">
+          <div class="post-author">
+            <img th:src="@{/images/biome-pages/costa/imgImage168.webp}" alt="" aria-hidden="true">
+            <strong>@Lukitos</strong>
+          </div>
+          <button class="post-menu" type="button" aria-label="Opções da publicação">⋮</button>
+        </div>
+
+        <div class="post-photo">
+          <img th:src="@{/images/home/community.webp}" alt="Jogadores explorando uma área do PEAK">
+        </div>
+
+        <p class="post-comment">Bela equipe, tomara que chegem ao topo</p>
+
+        <div class="post-footer">
+          <div class="post-reactions" aria-label="Reações da publicação">
+            <span>👍 <b>350</b></span>
+            <span>👎 <b>20</b></span>
+          </div>
+          <span class="post-comments">💬 <b>70</b></span>
+        </div>
+      </article>
+
+      <aside class="community-challenge">
+        <div class="challenge-author">
+          <img th:src="@{/images/biome-pages/costa/imgImage171.webp}" alt="" aria-hidden="true">
+          <strong>@Popin_?</strong>
+        </div>
+        <div class="challenge-tags">
+          <span>Sem dificuldade</span>
+          <span>Criativo</span>
+        </div>
+        <div class="challenge-xp"><span>🥇 20</span><span>🍫 70</span></div>
+        <section class="challenge-body">
+          <h2>DEV ROCKET</h2>
+          <h3>@qsfqdrov?</h3>
+          <p>Em breve: manchete deste desafio da comunidade.</p>
+        </section>
+      </aside>
+
+      <article class="community-post community-post--richestimber">
+        <div class="post-header">
+          <div class="post-author">
+            <img th:src="@{/images/biome-pages/costa/imgImage169.webp}" alt="" aria-hidden="true">
+            <strong>@richetimber</strong>
+          </div>
+          <button class="post-menu" type="button" aria-label="Opções da publicação">⋮</button>
+        </div>
+
+        <p class="post-caption">se liga nesse mod pra deixar o jogo em ultrawide</p>
+
+        <div class="post-photo">
+          <img th:src="@{/images/home/community.webp}" alt="Jogadores explorando uma área do PEAK">
+        </div>
+
+        <div class="post-footer">
+          <div class="post-reactions" aria-label="Reações da publicação">
+            <span>👍 <b>350</b></span>
+            <span>👎 <b>20</b></span>
+          </div>
+          <span class="post-comments">💬 <b>70</b></span>
+        </div>
+      </article>
+
+      <div class="community-participation">
+        <p>Participe também da comunidade compartilhando uma dica, estratégia ou build que te ajudou a chegar no PICO!!!</p>
+        <a th:href="@{/login}">Entre para participar!</a>
+      </div>
+    </section>
+  </main>
+
+  <div th:replace="~{fragments/footer :: siteFooter}"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

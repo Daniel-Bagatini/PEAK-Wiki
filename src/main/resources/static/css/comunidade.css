@@ -1,0 +1,369 @@
+:root {
+  --community-paper: #efefef;
+  --community-dark: #272727;
+}
+
+.community-page {
+  background:
+    linear-gradient(180deg, rgba(35, 45, 93, 0.28), rgba(18, 20, 18, 0.2)),
+    url("/images/home/background.webp") center / cover fixed;
+}
+
+.community-main {
+  flex: 1;
+  width: 100%;
+  min-height: 760px;
+  padding: 36px 18px 0;
+}
+
+.community-main > h1 {
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 8px 24px 6px;
+  border-radius: 10px;
+  background: #090a09;
+  color: #fff;
+  font-family: "Darumadrop One", cursive;
+  font-size: clamp(2.3rem, 7vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.community-feed {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  grid-template-areas:
+    "lukitos challenge"
+    "richest richest"
+    "join join";
+  width: min(760px, 100%);
+  margin: 0 auto;
+  gap: 18px 12px;
+}
+
+.community-post {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid #8b8b8b;
+  border-radius: 10px;
+  background: var(--community-paper);
+  color: #1b1b1b;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+.community-post--lukitos {
+  grid-area: lukitos;
+}
+
+.community-post--richestimber {
+  grid-area: richest;
+}
+
+.post-header {
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 10px 10px 0 0;
+  background: #d7a3dc;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.05rem;
+}
+
+.post-author img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-menu {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #111;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.post-photo {
+  height: 170px;
+  margin: 8px;
+  overflow: hidden;
+  border: 2px solid #fefefe;
+  border-radius: 4px;
+  background: #7d8791;
+}
+
+.post-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-footer {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px 10px;
+  font-size: 0.78rem;
+}
+
+.post-reactions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-reactions span,
+.post-comments {
+  white-space: nowrap;
+}
+
+.post-comments {
+  font-size: 1rem;
+}
+
+.community-challenge {
+  grid-area: challenge;
+  align-self: start;
+  min-height: 226px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #eeeeef;
+  color: #1b1b1b;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+.challenge-author {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  background: #e4e4e4;
+  font-size: 0.72rem;
+}
+
+.challenge-author img {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.challenge-tags,
+.challenge-xp {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  font-size: 0.58rem;
+  text-align: center;
+}
+
+.challenge-tags span {
+  padding: 3px 4px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.challenge-xp {
+  background: #dcdcdc;
+}
+
+.challenge-body {
+  margin: 0;
+  padding: 8px;
+  background: #8c5a53;
+  color: #fff;
+  text-align: center;
+}
+
+.challenge-body h2,
+.challenge-body h3 {
+  margin: 0;
+  font-family: "Darumadrop One", cursive;
+}
+
+.challenge-body h2 {
+  font-size: 0.95rem;
+}
+
+.challenge-body h3 {
+  margin-top: 2px;
+  font-size: 0.72rem;
+}
+
+.challenge-body p {
+  margin: 7px 0 0;
+  font-size: 0.48rem;
+  line-height: 1.25;
+}
+
+.community-post--richestimber {
+  margin-top: 2px;
+}
+
+.community-post--richestimber .post-header {
+  height: 58px;
+  background: #bfc6c9;
+}
+
+.community-post--richestimber .post-photo {
+  height: 150px;
+}
+
+.post-caption {
+  margin: 12px 10px 0;
+  font-family: "Darumadrop One", cursive;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.community-participation {
+  grid-area: join;
+  width: 78%;
+  justify-self: center;
+  margin: -38px auto 28px;
+  padding: 10px 14px 8px;
+  border-radius: 10px;
+  background: rgba(238, 238, 238, 0.94);
+  color: #191919;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.community-participation p {
+  margin: 0 0 6px;
+  font-family: "Darumadrop One", cursive;
+  font-size: 0.95rem;
+  line-height: 1.15;
+}
+
+.community-participation a {
+  color: #242424;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.post-comment {
+  margin: 0 8px 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #8f8f8f;
+  color: #fff;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .community-main {
+    min-height: 760px;
+    padding: 28px 14px 0;
+  }
+
+  .community-main > h1 {
+    margin-bottom: 18px;
+  }
+
+  .community-feed {
+    grid-template-columns: minmax(0, 1fr) 110px;
+    gap: 14px 8px;
+  }
+
+  .community-post--lukitos,
+  .community-post--richestimber {
+    min-width: 0;
+  }
+
+  .post-header {
+    height: 52px;
+  }
+
+  .post-author {
+    font-size: 0.9rem;
+  }
+
+  .post-author img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .post-photo {
+    height: 142px;
+  }
+
+  .community-post--richestimber .post-photo {
+    height: 132px;
+  }
+
+  .community-challenge {
+    min-height: 204px;
+  }
+
+  .community-participation {
+    width: 86%;
+  }
+}
+
+@media (max-width: 430px) {
+  .community-feed {
+    grid-template-areas:
+      "lukitos lukitos"
+      "challenge challenge"
+      "richest richest"
+      "join join";
+  }
+
+  .community-challenge {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    min-height: 116px;
+  }
+
+  .challenge-author {
+    grid-row: 1 / 3;
+    height: 100%;
+  }
+
+  .challenge-tags,
+  .challenge-xp {
+    justify-content: flex-start;
+  }
+
+  .challenge-body {
+    grid-column: 2;
+  }
+
+  .community-post--lukitos {
+    margin-right: 0;
+  }
+
+  .post-caption {
+    font-size: 0.95rem;
+  }
+
+  .community-participation {
+    width: 92%;
+    margin-top: 4px;
+  }
+}

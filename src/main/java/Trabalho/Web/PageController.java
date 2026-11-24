@@ -227,6 +227,11 @@ public class PageController {
 		return "recuperar-senha";
 	}
 
+	@GetMapping("/comunidade")
+	public String comunidade() {
+		return "comunidade";
+	}
+
 	private static Food food(String name, String... images) {
 		return new Food(name, List.of(images));
 	}

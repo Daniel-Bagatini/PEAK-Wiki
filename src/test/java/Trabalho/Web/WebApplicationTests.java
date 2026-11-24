@@ -56,7 +56,7 @@ class WebApplicationTests {
 	@Test
 	void rendersSharedFooterDiscordLinksOnEveryPage() throws Exception {
 		String[] routes = {
-				"/", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
+				"/", "/comunidade", "/biomas/costa", "/biomas/tropico", "/biomas/alpes", "/biomas/mesa",
 				"/biomas/caldeira", "/biomas/o-forno", "/biomas/pico", "/itens/comidas",
 				"/itens/equipamentos", "/insignias"
 		};
