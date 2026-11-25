@@ -94,16 +94,14 @@ if (secretDialog) {
   const enter = secretDialog.querySelector(".secret-enter");
   let biomeName = "";
 
-  /** Abre o aviso com a tarja fechada e o "Entrar" bloqueado. */
+  /** Abre o aviso com a tarja fechada; o "Entrar" fica sempre disponível. */
   function openWarning(slide) {
     biomeName = slide.dataset.secretOf;
     reveal.textContent = "";
     reveal.classList.remove("is-revealed");
     reveal.setAttribute("aria-label", "Revelar o bioma deste local secreto");
     enter.href = slide.href;
-    enter.setAttribute("aria-disabled", "true");
-    enter.tabIndex = -1;
-    enter.removeAttribute("aria-label");
+    enter.setAttribute("aria-label", `Entrar no local secreto do bioma ${biomeName}`);
     secretDialog.showModal();
     reveal.focus();
   }
@@ -123,15 +121,6 @@ if (secretDialog) {
     reveal.textContent = biomeName;
     reveal.classList.add("is-revealed");
     reveal.removeAttribute("aria-label");
-    enter.removeAttribute("aria-disabled");
-    enter.removeAttribute("tabindex");
-    enter.setAttribute("aria-label", `Entrar no local secreto do bioma ${biomeName}`);
-  });
-
-  enter.addEventListener("click", (event) => {
-    if (enter.getAttribute("aria-disabled") === "true") {
-      event.preventDefault();
-    }
   });
 
   secretDialog.querySelector(".secret-close").addEventListener("click", () => secretDialog.close());
