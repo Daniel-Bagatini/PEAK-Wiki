@@ -18,30 +18,55 @@
   <main class="community-main">
     <h1>Comunidade</h1>
 
+    <p class="community-flash" th:if="${publicada}" role="status">Sua postagem foi publicada!</p>
+    <p class="community-flash" th:if="${apagada}" role="status">A postagem foi apagada.</p>
+
+    <div class="community-actions">
+      <a class="community-new-post" th:href="@{/comunidade/nova-postagem}">+ Nova postagem</a>
+    </div>
+
     <section class="community-feed" aria-label="Publicações da comunidade">
-      <article class="community-post community-post--lukitos">
+      <article class="community-post" th:each="post, estado : ${postagens}"
+               th:classappend="${estado.first} ? 'community-post--destaque' : 'community-post--comum'">
         <div class="post-header">
           <div class="post-author">
-            <img th:src="@{/images/biome-pages/costa/imgImage168.webp}" alt="" aria-hidden="true">
-            <strong>@Lukitos</strong>
+            <img th:if="${post.avatar}" th:src="@{${post.avatar}}" alt="" aria-hidden="true">
+            <span th:unless="${post.avatar}" class="post-avatar-initial" aria-hidden="true" th:text="${post.inicial}">?</span>
+            <strong th:text="${post.autor}">@autor</strong>
           </div>
-          <button class="post-menu" type="button" aria-label="Opções da publicação">⋮</button>
+          <div class="dropdown">
+            <button class="post-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    data-bs-popper-config='{"strategy":"fixed"}'
+                    aria-label="Opções da publicação">⋮</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <form th:action="@{/comunidade/postagens/{id}/apagar(id=${post.id})}" method="post"
+                      onsubmit="return confirm('Apagar esta postagem? Isso não pode ser desfeito.');">
+                  <button class="dropdown-item post-delete" type="submit">🗑️ Apagar postagem</button>
+                </form>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="post-photo">
-          <img th:src="@{/images/home/community.webp}" alt="Jogadores explorando uma área do PEAK">
+        <p class="post-caption" th:unless="${estado.first}" th:text="${post.texto}">Texto da postagem</p>
+
+        <div class="post-photo" th:if="${post.imagem}">
+          <img th:src="@{${post.imagem}}" alt="Imagem da publicação">
         </div>
 
-        <p class="post-comment">Bela equipe, tomara que chegem ao topo</p>
+        <p class="post-comment" th:if="${estado.first}" th:text="${post.texto}">Texto da postagem</p>
 
         <div class="post-footer">
           <div class="post-reactions" aria-label="Reações da publicação">
-            <span>👍 <b>350</b></span>
-            <span>👎 <b>20</b></span>
+            <span>👍 <b th:text="${post.curtidas}">0</b></span>
+            <span>👎 <b th:text="${post.descurtidas}">0</b></span>
           </div>
-          <span class="post-comments">💬 <b>70</b></span>
+          <span class="post-comments">💬 <b th:text="${post.comentarios}">0</b></span>
         </div>
       </article>
+
+      <p class="community-empty" th:if="${#lists.isEmpty(postagens)}">Ainda não há postagens. Seja o primeiro!</p>
 
       <aside class="community-challenge">
         <div class="challenge-author">
@@ -60,33 +85,9 @@
         </section>
       </aside>
 
-      <article class="community-post community-post--richestimber">
-        <div class="post-header">
-          <div class="post-author">
-            <img th:src="@{/images/biome-pages/costa/imgImage169.webp}" alt="" aria-hidden="true">
-            <strong>@richetimber</strong>
-          </div>
-          <button class="post-menu" type="button" aria-label="Opções da publicação">⋮</button>
-        </div>
-
-        <p class="post-caption">se liga nesse mod pra deixar o jogo em ultrawide</p>
-
-        <div class="post-photo">
-          <img th:src="@{/images/home/community.webp}" alt="Jogadores explorando uma área do PEAK">
-        </div>
-
-        <div class="post-footer">
-          <div class="post-reactions" aria-label="Reações da publicação">
-            <span>👍 <b>350</b></span>
-            <span>👎 <b>20</b></span>
-          </div>
-          <span class="post-comments">💬 <b>70</b></span>
-        </div>
-      </article>
-
       <div class="community-participation">
         <p>Participe também da comunidade compartilhando uma dica, estratégia ou build que te ajudou a chegar no PICO!!!</p>
-        <a th:href="@{/login}">Entre para participar!</a>
+        <a th:href="@{/comunidade/nova-postagem}">Criar uma postagem</a>
       </div>
     </section>
   </main>
