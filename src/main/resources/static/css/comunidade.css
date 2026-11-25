@@ -34,10 +34,6 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 170px;
-  grid-template-areas:
-    "lukitos challenge"
-    "richest richest"
-    "join join";
   width: min(760px, 100%);
   margin: 0 auto;
   gap: 18px 12px;
@@ -54,12 +50,83 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
-.community-post--lukitos {
-  grid-area: lukitos;
+/* A postagem mais recente fica ao lado do desafio; as outras ocupam a largura toda. */
+.community-post,
+.community-empty {
+  grid-column: 1 / -1;
 }
 
-.community-post--richestimber {
-  grid-area: richest;
+.community-post--destaque,
+.community-empty {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+}
+
+.post-avatar-initial {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #272727;
+  color: #fff;
+  font-family: "Bangers", cursive;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.post-caption,
+.post-comment {
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.community-actions {
+  display: flex;
+  width: min(760px, 100%);
+  justify-content: flex-end;
+  margin: 0 auto 14px;
+}
+
+.community-new-post {
+  padding: 8px 16px 6px;
+  border-radius: 10px;
+  background: #090a09;
+  color: #fff;
+  font-family: "Bangers", cursive;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.community-new-post:hover,
+.community-new-post:focus-visible {
+  background: #d7a3dc;
+  color: #111;
+}
+
+.community-flash {
+  width: min(760px, 100%);
+  margin: 0 auto 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #d7f0d0;
+  color: #1b3a17;
+  font-weight: 800;
+  text-align: center;
+}
+
+.community-empty {
+  margin: 0;
+  padding: 24px 16px;
+  border-radius: 10px;
+  background: var(--community-paper);
+  color: #1b1b1b;
+  font-family: "Darumadrop One", cursive;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .post-header {
@@ -96,6 +163,17 @@
   color: #111;
   font-size: 1.6rem;
   line-height: 1;
+}
+
+.post-delete {
+  color: #c0392b;
+  font-weight: 800;
+}
+
+.post-delete:hover,
+.post-delete:focus-visible {
+  background: #fbe3e0;
+  color: #a12b1f;
 }
 
 .post-photo {
@@ -138,7 +216,8 @@
 }
 
 .community-challenge {
-  grid-area: challenge;
+  grid-column: 2;
+  grid-row: 1;
   align-self: start;
   min-height: 226px;
   overflow: hidden;
@@ -215,16 +294,16 @@
   line-height: 1.25;
 }
 
-.community-post--richestimber {
+.community-post--comum {
   margin-top: 2px;
 }
 
-.community-post--richestimber .post-header {
+.community-post--comum .post-header {
   height: 58px;
   background: #bfc6c9;
 }
 
-.community-post--richestimber .post-photo {
+.community-post--comum .post-photo {
   height: 150px;
 }
 
@@ -236,7 +315,7 @@
 }
 
 .community-participation {
-  grid-area: join;
+  grid-column: 1 / -1;
   width: 78%;
   justify-self: center;
   margin: -38px auto 28px;
@@ -290,8 +369,7 @@
     gap: 14px 8px;
   }
 
-  .community-post--lukitos,
-  .community-post--richestimber {
+  .community-post {
     min-width: 0;
   }
 
@@ -312,7 +390,7 @@
     height: 142px;
   }
 
-  .community-post--richestimber .post-photo {
+  .community-post--comum .post-photo {
     height: 132px;
   }
 
@@ -326,12 +404,14 @@
 }
 
 @media (max-width: 430px) {
-  .community-feed {
-    grid-template-areas:
-      "lukitos lukitos"
-      "challenge challenge"
-      "richest richest"
-      "join join";
+  .community-post--destaque,
+  .community-empty,
+  .community-challenge {
+    grid-column: 1 / -1;
+  }
+
+  .community-challenge {
+    grid-row: 2;
   }
 
   .community-challenge {
@@ -354,9 +434,6 @@
     grid-column: 2;
   }
 
-  .community-post--lukitos {
-    margin-right: 0;
-  }
 
   .post-caption {
     font-size: 0.95rem;
