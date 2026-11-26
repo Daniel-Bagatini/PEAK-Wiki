@@ -58,13 +58,16 @@ Minhas (a corrigir se quiser):
 - **Composição (desktop):** papel cremoso de fundo; folha-cartão do formulário de um lado e uma foto de
   bioma com borda rasgada do outro (imagem que já existe no projeto, a escolher em `biome-pages/`);
   no celular, uma coluna com o formulário primeiro.
-- **Rodapé:** faixa escura "de papel rasgado" com os 4 perfis do Discord como etiquetas de papel.
-  Fica dentro do `login.html` (não mexe no fragmento usado nas outras páginas).
+- **Cabeçalho e rodapé novos, como fragmentos Thymeleaf** (pedido do usuário, sem mexer nos existentes):
+  `fragments/login-header.html` (`loginHeader`: marca mínima com link para a home) e
+  `fragments/login-footer.html` (`loginFooter`: faixa escura "de papel rasgado" com os 4 perfis do
+  Discord como etiquetas de papel). O `login.html` os usa com `th:replace`. `header.html` e
+  `footer.html` ficam intactos.
 - **Texto:** mantém "Entrar" e "Explore o mundo, suba mais alto e construa sua história." O rótulo
   "Acesso" sai (é só rótulo); "Sua jornada começa aqui" perde a caixa-alta espaçada. Toda mudança
   de texto é listada no fim.
-- **Arquivos:** editar `login.html`; criar CSS novo em `static/css/` (nome `login-*`), sem tocar nos
-  existentes.
+- **Arquivos:** editar `login.html`; criar os dois fragmentos acima e CSS novo em `static/css/`
+  (nome `login-*`), sem tocar nos existentes.
 
 ## A cargo de quem constrói
 
