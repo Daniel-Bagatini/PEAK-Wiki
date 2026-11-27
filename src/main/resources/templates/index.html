@@ -19,11 +19,13 @@
   <div th:replace="~{fragments/hum-header :: humHeader}"></div>
 
   <main class="home-main d-flex flex-column align-items-center">
-    <h1 class="home-title">WIKI DO PEAK</h1>
-    <button class="biomes-card" id="biomas" type="button" aria-label="Explore os biomas" aria-haspopup="dialog" aria-controls="biome-dialog">
-      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718" alt="Arte oficial de PEAK com uma paisagem de montanha">
-      <h2 class="biomes-title">Biomas</h2>
-    </button>
+    <section class="poster" aria-label="Biomas">
+      <h1 class="home-title">WIKI DO PEAK</h1>
+      <button class="biomes-card" id="biomas" type="button" aria-label="Explore os biomas" aria-haspopup="dialog" aria-controls="biome-dialog">
+        <img th:src="@{/images/home/card-biomes.webp}" alt="Arte oficial de PEAK com uma paisagem de montanha" width="1000" height="555">
+        <h2 class="biomes-title">Biomas</h2>
+      </button>
+    </section>
 
     <dialog class="biome-dialog" id="biome-dialog" aria-labelledby="biome-dialog-title">
       <div class="biome-dialog-frame">

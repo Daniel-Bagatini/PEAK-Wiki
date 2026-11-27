@@ -1,10 +1,10 @@
-/* Hallmark · shape: Settled · genre: playful · theme: Hum (deal 3/3, seed login-game-wiki-about-66ca·ae2e28d5·2026-11-26·r0) · redesign: full · surface: absolute
- * hero: Settled · nav: brand bar with two paper links · footer: kept as is · imagery: photographs (the game's own) · signature: the summit card for Biomas, torn like cut paper, with its name on a paper tag
+/* Hallmark · shape: Photographic · genre: playful · theme: Hum (deal 3/3, seed login-game-wiki-about-66ca·ae2e28d5·2026-11-26·r0) · redesign: full · surface: absolute
+ * hero: Ledge · nav: brand bar with two paper links · footer: kept as is · imagery: photographs (the game's own) · signature: the Biomas summit photo edge to edge, torn at the base, with the title on a paper plate
  * axes: light/rounded-sans/chromatic-yellow · posture: full-palette · contrast: pass · fold: pass · v2.0.0 */
-/* Hallmark · pre-emit critique: P3 H4 E4 S4 R4 V3 · weakest: P, a wiki home has little to argue; the order Biomas, Itens, Insígnias, Steam is the argument and the cut paper only carries it */
+/* Hallmark · pre-emit critique: P4 H5 E4 S4 R4 V4 · weakest: E, the full-bleed photos are 1000px wide so they soften past 1600px; the layout stops at 1600px and centres instead of stretching */
 /* Hallmark · waive 12 · hero has headline and action, no sentence · a redesign adds no copy; headline and Biomas action are visible at 1280x800 */
 /* Hallmark · waive 7b · --footer-ink resolves to #fff · the footer must stay identical to the original (white on #1c1c1c), as the user asked */
-/* Hallmark · o rodapé e o botão da Steam seguem o site.css sem alteração; este arquivo só posiciona o botão. */
+/* Hallmark · o rodapé, o botão da Steam e as janelas (carrossel, secreto, itens) seguem o site.css e o item-dialog.css sem alteração. */
 
 :root {
   --tear-bottom: polygon(0 0, 100% 0, 100.0% calc(100% - 2.9px), 97.7% calc(100% - 4.7px), 95.5% calc(100% - 3.2px), 93.2% calc(100% - 7px), 90.9% calc(100% - 5px), 88.6% calc(100% - 3.7px), 86.4% calc(100% - 4.1px), 84.1% calc(100% - 5.3px), 81.8% calc(100% - 4.6px), 79.5% calc(100% - 5.5px), 77.3% calc(100% - 5.1px), 75.0% calc(100% - 2.1px), 72.7% calc(100% - 4.9px), 70.5% calc(100% - 2.2px), 68.2% calc(100% - 4.4px), 65.9% calc(100% - 8.5px), 63.6% calc(100% - 7.1px), 61.4% calc(100% - 4.5px), 59.1% calc(100% - 5.3px), 56.8% calc(100% - 5.7px), 54.5% calc(100% - 5.6px), 52.3% calc(100% - 2.3px), 50.0% calc(100% - 2.8px), 47.7% calc(100% - 6.8px), 45.5% calc(100% - 5.7px), 43.2% calc(100% - 2.2px), 40.9% calc(100% - 2.2px), 38.6% calc(100% - 4.6px), 36.4% calc(100% - 4.5px), 34.1% calc(100% - 3.3px), 31.8% calc(100% - 3.1px), 29.5% calc(100% - 2.1px), 27.3% calc(100% - 6.4px), 25.0% calc(100% - 4.8px), 22.7% calc(100% - 4.8px), 20.5% calc(100% - 4.1px), 18.2% calc(100% - 5.2px), 15.9% calc(100% - 3.6px), 13.6% calc(100% - 3.3px), 11.4% calc(100% - 2.4px), 9.1% calc(100% - 2.3px), 6.8% calc(100% - 5.3px), 4.5% calc(100% - 3.2px), 2.3% calc(100% - 3.3px), 0.0% calc(100% - 6.5px));
@@ -12,16 +12,17 @@
   --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
   --fibre: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='f'><feTurbulence type='turbulence' baseFrequency='0.012 0.5' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0 0.3  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
   --color-ink-sheet: oklch(23% 0.018 255);
+  --tear-both: polygon(0.0% 6.5px, 2.3% 5px, 4.5% 5.3px, 6.8% 7.9px, 9.1% 2px, 11.4% 2.8px, 13.6% 2.3px, 15.9% 2.5px, 18.2% 2.5px, 20.5% 4.2px, 22.7% 5.8px, 25.0% 2.1px, 27.3% 5.3px, 29.5% 4.9px, 31.8% 2.8px, 34.1% 4.5px, 36.4% 2.3px, 38.6% 5.6px, 40.9% 6.5px, 43.2% 2.4px, 45.5% 2.6px, 47.7% 2.8px, 50.0% 2.3px, 52.3% 4.2px, 54.5% 5px, 56.8% 3px, 59.1% 5.8px, 61.4% 6.9px, 63.6% 4px, 65.9% 2.8px, 68.2% 5.9px, 70.5% 5.2px, 72.7% 3.7px, 75.0% 3.1px, 77.3% 5px, 79.5% 2.7px, 81.8% 5.8px, 84.1% 2.5px, 86.4% 5.9px, 88.6% 4.2px, 90.9% 2.7px, 93.2% 5.2px, 95.5% 7.8px, 97.7% 3.3px, 100.0% 4.3px, 100.0% calc(100% - 7.9px), 97.7% calc(100% - 8.3px), 95.5% calc(100% - 5.4px), 93.2% calc(100% - 3.7px), 90.9% calc(100% - 5.5px), 88.6% calc(100% - 2.6px), 86.4% calc(100% - 4px), 84.1% calc(100% - 6.8px), 81.8% calc(100% - 5.4px), 79.5% calc(100% - 6.3px), 77.3% calc(100% - 3.3px), 75.0% calc(100% - 3.9px), 72.7% calc(100% - 3.5px), 70.5% calc(100% - 5.5px), 68.2% calc(100% - 5.9px), 65.9% calc(100% - 2.7px), 63.6% calc(100% - 8.6px), 61.4% calc(100% - 6.6px), 59.1% calc(100% - 3px), 56.8% calc(100% - 4.6px), 54.5% calc(100% - 6.6px), 52.3% calc(100% - 5.2px), 50.0% calc(100% - 9.1px), 47.7% calc(100% - 6.8px), 45.5% calc(100% - 3.7px), 43.2% calc(100% - 6.2px), 40.9% calc(100% - 3.8px), 38.6% calc(100% - 5.1px), 36.4% calc(100% - 4.7px), 34.1% calc(100% - 6.2px), 31.8% calc(100% - 2.2px), 29.5% calc(100% - 4.4px), 27.3% calc(100% - 5.9px), 25.0% calc(100% - 2.9px), 22.7% calc(100% - 6.1px), 20.5% calc(100% - 3.9px), 18.2% calc(100% - 5.9px), 15.9% calc(100% - 2.8px), 13.6% calc(100% - 2.5px), 11.4% calc(100% - 5.1px), 9.1% calc(100% - 8.7px), 6.8% calc(100% - 9.3px), 4.5% calc(100% - 7.1px), 2.3% calc(100% - 7.5px), 0.0% calc(100% - 4.7px));
   --container: 1120px;
+  --stage: 1600px;
+  --edge: max(var(--gutter), calc((100% - var(--container)) / 2));
+  --color-accent-pressed: var(--color-accent-deep);
   --footer-ink: #fff; /* igual ao rodapé original, que herdava o branco do body escuro */
-  --color-scrim: oklch(20% 0.014 255 / 0.7);
-  --shadow-dialog: 0 24px 70px oklch(20% 0.014 255 / 0.4);
 }
 
 html { background: var(--color-paper); overflow-x: clip; }
 body.home-hum { overflow-x: clip; background: var(--grain), var(--fibre), var(--color-paper); color: var(--color-ink); }
 body.home-hum::before { display: none; }
-body.home-hum :focus-visible { outline-color: var(--color-focus); }
 
 /* Cabeçalho novo, rasgado embaixo */
 .hum-bar { position: relative; z-index: var(--z-raised); display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); padding: var(--space-sm) max(var(--gutter), var(--space-lg)) var(--space-lg); filter: var(--shadow-paper); }
@@ -34,65 +35,67 @@ body.home-hum :focus-visible { outline-color: var(--color-focus); }
 .hum-brand:focus-visible, .hum-link:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 .hum-brand img { display: block; width: auto; height: 44px; }
 .hum-nav { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-sm); }
-.hum-link { --edge: 4px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 var(--space-md); border-radius: var(--radius-stock); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-weight: 800; font-size: var(--text-sm); text-align: center; text-decoration: none; box-shadow: inset 0 0 0 1px var(--color-rule), 0 var(--edge) 0 0 var(--color-edge); transition: translate var(--dur-micro) var(--ease-snap), box-shadow var(--dur-micro) var(--ease-snap); }
-.hum-link:hover { --edge: 6px; translate: 0 -2px; }
-.hum-link:active { --edge: 1px; translate: 0 3px; }
+.hum-link { --edge-h: 4px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 var(--space-md); border-radius: var(--radius-stock); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-weight: 800; font-size: var(--text-sm); text-align: center; text-decoration: none; box-shadow: inset 0 0 0 1px var(--color-rule), 0 var(--edge-h) 0 0 var(--color-edge); transition: translate var(--dur-micro) var(--ease-snap), box-shadow var(--dur-micro) var(--ease-snap); }
+.hum-link:hover { --edge-h: 6px; translate: 0 -2px; }
+.hum-link:active { --edge-h: 1px; translate: 0 3px; }
 
-/* Miolo */
-body.home-hum .home-main { align-items: stretch; gap: clamp(var(--space-xl), 6vw, var(--space-2xl)); width: min(100% - 2 * var(--gutter), var(--container)); padding: clamp(var(--space-lg), 5vw, var(--space-xl)) 0 clamp(var(--space-2xl), 8vw, var(--space-3xl)); }
-body.home-hum .home-title { padding: 0; border-radius: 0; background: none; color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-display-s); font-weight: 400; letter-spacing: 0; line-height: 1.05; text-align: left; text-shadow: none; text-wrap: balance; overflow-wrap: break-word; }
+/* Miolo: sem contêiner; cada seção decide a própria largura */
+body.home-hum .home-main { align-items: stretch; gap: clamp(var(--space-2xl), 9vw, var(--space-3xl)); width: 100%; padding: 0 0 clamp(var(--space-2xl), 8vw, var(--space-3xl)); }
 
-/* Biomas: a foto grande, rasgada embaixo, com o nome numa etiqueta de papel */
-body.home-hum .biomes-card { min-height: clamp(260px, 42vw, 460px); overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; filter: var(--shadow-paper); }
+/* 1. Pôster: a foto de Biomas de ponta a ponta, o título em placa de papel */
+.poster { position: relative; width: 100%; max-width: var(--stage); margin-inline: auto; }
+body.home-hum .biomes-card { display: flex; align-items: flex-end; justify-content: flex-end; width: 100%; min-height: clamp(460px, calc(100svh - 140px), 820px); overflow: visible; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; filter: var(--shadow-paper); }
 body.home-hum .biomes-card img { clip-path: var(--tear-bottom); transition: none; background: var(--color-paper-3); }
 body.home-hum .biomes-card:hover img { transform: none; }
 body.home-hum .biomes-card::after { display: none; }
-body.home-hum .biomes-title { margin: 0 0 var(--space-xl) var(--space-lg); padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-stock); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-display-s); font-weight: 400; letter-spacing: 0; line-height: 1.05; text-shadow: none; rotate: -1.5deg; box-shadow: inset 0 0 0 1px var(--color-rule), var(--shadow-card); transition: translate var(--dur-micro) var(--ease-snap); }
-body.home-hum .biomes-card:hover .biomes-title { translate: 0 -4px; }
-body.home-hum .biomes-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 6px; }
+body.home-hum .biomes-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -6px; }
+body.home-hum .home-title { position: absolute; z-index: 2; left: var(--gutter); bottom: clamp(var(--space-xl), 7vw, var(--space-2xl)); max-width: min(46%, 38rem); margin: 0; padding: var(--space-md) clamp(var(--space-md), 3vw, var(--space-xl)) var(--space-sm); border-radius: var(--radius-card); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-family: var(--font-display); font-size: clamp(2.5rem, 9vw, 7.5rem); font-weight: 400; letter-spacing: 0; line-height: 1; text-align: left; text-shadow: none; text-wrap: balance; overflow-wrap: break-word; rotate: -1deg; box-shadow: inset 0 0 0 1px var(--color-rule), var(--shadow-card); pointer-events: none; }
+body.home-hum .biomes-title { --edge-h: 6px; margin: 0 var(--gutter) clamp(var(--space-xl), 7vw, var(--space-2xl)) 0; padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-stock); background: var(--grain), var(--fibre), var(--color-accent); color: var(--color-accent-ink); font-family: var(--font-display); font-size: clamp(1.75rem, 3.2vw, 3rem); font-weight: 400; letter-spacing: 0; line-height: 1.05; text-shadow: none; box-shadow: inset 0 1px 0 var(--color-fringe), 0 var(--edge-h) 0 0 var(--color-accent-pressed); transition: translate var(--dur-micro) var(--ease-spring), box-shadow var(--dur-micro) var(--ease-spring); }
+body.home-hum .biomes-card:hover .biomes-title { --edge-h: 9px; translate: 0 -3px; }
+body.home-hum .biomes-card:active .biomes-title { --edge-h: 1px; translate: 0 5px; }
 
-/* Itens e Insígnias: duas folhas, na ordem, lado a lado */
-body.home-hum .category-grid { gap: clamp(var(--space-lg), 4vw, var(--space-xl)); }
-body.home-hum .category-card { min-height: clamp(200px, 26vw, 300px); overflow: visible; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; filter: var(--shadow-paper); transition: none; }
+/* 2 e 3. Itens e Insígnias: faixas grandes que sangram para lados opostos */
+body.home-hum .category-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(var(--space-xl), 7vw, var(--space-2xl)); width: 100%; max-width: var(--stage); margin-inline: auto; }
+body.home-hum .category-card { align-items: flex-end; width: 92%; min-height: clamp(300px, 52vh, 560px); overflow: visible; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; filter: var(--shadow-paper); transition: none; }
 body.home-hum .category-card::before { display: none; }
 body.home-hum .category-card:hover { transform: none; border-color: transparent; }
+body.home-hum .category-card--items { justify-self: start; justify-content: flex-start; }
+body.home-hum .category-card--badges { justify-self: end; justify-content: flex-end; }
 body.home-hum .category-card-photo { clip-path: var(--tear-bottom); background: var(--color-paper-3); }
-body.home-hum .category-card-label { position: absolute; left: var(--space-md); bottom: var(--space-lg); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-stock); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-title); font-weight: 400; letter-spacing: 0; line-height: 1.1; text-shadow: none; box-shadow: inset 0 0 0 1px var(--color-rule), var(--shadow-card); transition: translate var(--dur-micro) var(--ease-snap); }
+body.home-hum .category-card-label { position: relative; margin: 0 var(--gutter) var(--space-xl); padding: var(--space-sm) var(--space-xl) var(--space-xs); border-radius: var(--radius-card); background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); font-family: var(--font-display); font-size: clamp(2.75rem, 8vw, 7rem); font-weight: 400; letter-spacing: 0; line-height: 1.05; text-shadow: none; box-shadow: inset 0 0 0 1px var(--color-rule), var(--shadow-card); transition: translate var(--dur-micro) var(--ease-snap); }
 body.home-hum .category-card--items .category-card-label { rotate: 1.2deg; }
 body.home-hum .category-card--badges .category-card-label { rotate: -1.2deg; }
-body.home-hum .category-card:hover .category-card-label { translate: 0 -4px; }
-body.home-hum .category-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 6px; }
+body.home-hum .category-card:hover .category-card-label { translate: 0 -5px; }
+body.home-hum .category-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -6px; }
 
-/* Sobre o jogo: bilhete de papel */
-body.home-hum .game-overview { width: 100%; min-height: 0; gap: clamp(var(--space-md), 3vw, var(--space-xl)); padding: clamp(var(--space-lg), 4vw, var(--space-xl)); border-radius: var(--radius-card); background: var(--grain), var(--fibre), var(--color-card); box-shadow: inset 0 0 0 1px var(--color-rule), var(--shadow-card); }
-body.home-hum .game-overview h2 { margin: 0 0 var(--space-sm); color: var(--color-ink); font-size: var(--text-section); line-height: 1.05; text-align: left; text-shadow: none; text-wrap: balance; }
+/* 4. Sobre o jogo: faixa de papel rasgada nas duas bordas, título grande */
+body.home-hum .game-overview { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: clamp(var(--space-lg), 5vw, var(--space-2xl)); width: 100%; min-height: 0; padding: clamp(var(--space-2xl), 8vw, var(--space-3xl)) var(--edge); border-radius: 0; background: none; }
+body.home-hum .game-overview::before { position: absolute; z-index: -1; inset: 0; content: ""; background: var(--grain), var(--fibre), var(--color-paper-3); clip-path: var(--tear-both); filter: var(--shadow-paper); }
+body.home-hum .game-overview-image { width: 100%; max-height: none; min-height: 0; aspect-ratio: 16 / 10; border-radius: 0; clip-path: var(--tear-bottom); background: var(--color-paper-2); rotate: -1deg; }
+body.home-hum .game-overview-copy { max-width: 36rem; }
+body.home-hum .game-overview h2 { margin: 0 0 var(--space-md); color: var(--color-ink); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; text-align: left; text-shadow: none; text-wrap: balance; }
 body.home-hum .game-overview p { color: var(--color-ink-2); font-family: var(--font-body); font-size: var(--text-lead); font-weight: 600; line-height: 1.5; text-align: left; }
-body.home-hum .game-overview-image { width: 44%; min-height: 200px; max-height: none; border-radius: 0; clip-path: var(--tear-bottom); background: var(--color-paper-3); }
 
-/* Botão da Steam: o botão em si vem do site.css, sem alteração. Aqui só a posição. */
-.steam-slot { display: flex; justify-content: center; width: 100%; padding-block: var(--space-sm); }
+/* 5. Botão da Steam: o botão em si vem do site.css, sem alteração. Aqui só a posição. */
+.steam-slot { display: flex; justify-content: center; width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; padding-block: var(--space-sm); }
 @media (max-width: 500px) { .steam-slot .steam-promo-btn { width: 100%; margin-right: 0; } }
 
-/* O rodapé continua idêntico: devolve a cor que ele herdava do body escuro */
+/* 6. O rodapé continua idêntico: devolve a cor que ele herdava do body escuro */
 body.home-hum .creator-footer { color: var(--footer-ink); }
-
-/* Janelas: moldura de papel por cima, sem tocar no funcionamento */
-body.home-hum .biome-dialog, body.home-hum .secret-dialog { border: 0; border-radius: var(--radius-card); background-color: var(--color-paper); background-image: var(--grain), var(--fibre); color: var(--color-ink); box-shadow: var(--shadow-card), var(--shadow-dialog); }
-body.home-hum .biome-dialog::backdrop, body.home-hum .secret-dialog::backdrop { background: var(--color-scrim); backdrop-filter: none; }
-body.home-hum .biome-dialog-header h2 { color: var(--color-ink); }
-body.home-hum .biome-close { border: 0; background: var(--grain), var(--fibre), var(--color-card); color: var(--color-ink); box-shadow: inset 0 0 0 1px var(--color-rule), 0 3px 0 0 var(--color-edge); }
-body.home-hum .biome-close:hover { background: var(--color-paper-2); }
-body.home-hum .biome-slide, body.home-hum .item-choice-card { border-radius: var(--radius-stock); }
 
 @media (max-width: 60rem) { :root { --gutter: 24px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; } }
 @media (max-width: 56rem) {
   .hum-nav { justify-content: flex-start; }
-  body.home-hum .game-overview { flex-direction: column; align-items: stretch; }
-  body.home-hum .game-overview-image { width: 100%; min-height: 0; aspect-ratio: 16 / 10; }
+  body.home-hum .game-overview { grid-template-columns: minmax(0, 1fr); }
+  body.home-hum .game-overview-copy { max-width: none; }
 }
 @media (max-width: 40rem) {
-  body.home-hum .category-grid { grid-template-columns: minmax(0, 1fr); }
   .hum-bar { flex-wrap: wrap; }
   .hum-brand img { height: 38px; }
+  body.home-hum .biomes-card { align-items: flex-start; min-height: clamp(440px, calc(100svh - 160px), 640px); }
+  body.home-hum .biomes-title { margin: var(--space-md) var(--gutter) 0 0; }
+  body.home-hum .home-title { bottom: var(--space-xl); max-width: calc(100% - 2 * var(--gutter)); }
+  body.home-hum .category-card { width: calc(100% - var(--gutter)); min-height: 280px; }
+  body.home-hum .category-card-label { margin: 0 var(--space-md) var(--space-lg); padding: var(--space-xs) var(--space-lg) var(--space-3xs); }
 }
