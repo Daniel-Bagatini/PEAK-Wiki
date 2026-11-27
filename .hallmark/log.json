@@ -7,6 +7,40 @@
   "theme": "hum",
   "axes": "light/rounded-sans/chromatic-yellow",
   "hero": "Settled",
+  "nav": "brand bar with two paper links",
+  "footer": "kept as is",
+  "imagery": "photographs",
+  "photos": [
+   "home/card-items.webp",
+   "home/card-badges.webp",
+   "home/about-game.webp"
+  ],
+  "entry": "home",
+  "fingerprint": "home-hum",
+  "sections": [
+   "bar",
+   "biomas",
+   "itens+insignias",
+   "sobre",
+   "steam",
+   "footer"
+  ],
+  "signature": "the summit card for Biomas torn like cut paper",
+  "waived": [
+   "12",
+   "7b"
+  ],
+  "prompt": "home of a game wiki about climbing mountain biomes",
+  "date": "2026-11-27"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "Settled",
+  "theme": "hum",
+  "axes": "light/rounded-sans/chromatic-yellow",
+  "hero": "Settled",
   "nav": "minimal brand bar",
   "footer": "ink tear with paper tags",
   "imagery": "photographs",
