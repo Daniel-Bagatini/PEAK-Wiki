@@ -71,3 +71,11 @@ pré-visualizador estático, conferência de que o botão da Steam, o rodapé e 
 ## Commits
 
 1. Este documento. 2. A home Spore.
+
+## Revisão 1
+
+- **Itens invertido:** a linha de Itens passa a ter a foto à esquerda e o nome à direita; Insígnias mantém o
+  nome à esquerda e a foto à direita (zigue-zague). No celular as duas voltam a nome e foto empilhados.
+- **Fundo do PEAK de volta:** a imagem do site (`background.webp`, a do `body::before` do `site.css`) volta como
+  fundo **fixo** (não rola), bem escurecida e aquecida (`filter` + uma camada de `--color-scrim`, derivada do chão
+  `paper`), para continuar dentro da paleta quente do Spore.
