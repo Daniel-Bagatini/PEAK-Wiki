@@ -79,3 +79,11 @@ pré-visualizador estático, conferência de que o botão da Steam, o rodapé e 
 - **Fundo do PEAK de volta:** a imagem do site (`background.webp`, a do `body::before` do `site.css`) volta como
   fundo **fixo** (não rola), bem escurecida e aquecida (`filter` + uma camada de `--color-scrim`, derivada do chão
   `paper`), para continuar dentro da paleta quente do Spore.
+
+## Revisão 2
+
+- **Rodapé:** só a cor de fundo muda, para a mesma do cabeçalho (`--color-paper-2`); texto, estrutura e perfis do
+  Discord continuam como estavam (o texto segue branco, como no original).
+- **Botão de Biomas:** o botão já era a imagem inteira (o `<button class="biomes-card">` envolve a foto); o rótulo
+  virou uma barra rosa de ponta a ponta na base da foto, com o título "Biomas" bem maior
+  (`clamp(3rem, 8vw, 7rem)`). Mantém o único uso do rosa na página, sem contorno rosa (regra do Spore).
