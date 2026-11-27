@@ -87,3 +87,9 @@ pré-visualizador estático, conferência de que o botão da Steam, o rodapé e 
 - **Botão de Biomas:** o botão já era a imagem inteira (o `<button class="biomes-card">` envolve a foto); o rótulo
   virou uma barra rosa de ponta a ponta na base da foto, com o título "Biomas" bem maior
   (`clamp(3rem, 8vw, 7rem)`). Mantém o único uso do rosa na página, sem contorno rosa (regra do Spore).
+
+## Revisão 3
+
+A barra de Biomas cobria os personagens da foto. A barra não mudou; a **imagem** mudou: o botão agora é uma
+coluna (foto em cima, barra rosa embaixo) e a foto ocupa só o espaço acima da barra, ancorada na parte de baixo
+(`object-position: 55% bottom`), então os personagens ficam visíveis e, se for preciso cortar, corta-se o topo.
