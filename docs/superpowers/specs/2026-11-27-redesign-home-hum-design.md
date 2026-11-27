@@ -86,3 +86,20 @@ mudaram (`git diff`), e `mvnw test` se o Java 25 existir.
 ## Commits
 
 1. Este documento. 2. O plano. 3. A home redesenhada.
+
+## Revisão 2 (mesmo dia): layout "Pôster de tela cheia" (opção A)
+
+O primeiro resultado (cartões empilhados num estilo novo) não agradou: o usuário quer mudança **bruta**,
+de layout, distribuição, posição e tamanho de fonte, não só de estilo. Escolhida a opção **A**.
+
+- **Composição:** (1) pôster: a foto de Biomas de ponta a ponta na primeira tela, o título "Wiki do Peak" em
+  placa de papel grande na base e "Biomas" como o botão de ação em amarelo-pera; (2) Itens e (3) Insígnias
+  como faixas grandes, alternando de lado (uma sangra para a esquerda, a outra para a direita), nome gigante
+  em placa de papel; (4) "Sobre o jogo" numa faixa de papel rasgada nas duas bordas, título grande e texto
+  ao lado da imagem; (5) botão da Steam, intocado, centralizado; (6) rodapé idêntico.
+- **Carrossel e janelas:** voltam ao visual original (nenhuma sobreposição de estilo nas janelas).
+- **Imagem de Biomas:** troca da imagem do CDN da Steam (616px, borrada em tela cheia) pela
+  `images/home/card-biomes.webp` (1000px, a mesma arte, local). Decisão minha; evita depender do CDN.
+- **Largura:** tela cheia até 1600px; acima disso, o conteúdo fica centralizado e as margens crescem.
+- Continuam valendo: ordem Biomas, Itens, Insígnias, Steam; rodapé e botão da Steam idênticos;
+  todos os ids, classes e atributos usados por `biomes.js`, `items.js` e pelos testes.
