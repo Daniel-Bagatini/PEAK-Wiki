@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111312">
-  <title>PEAK — Wiki</title>
+  <meta name="theme-color" content="#1a1613">
+  <meta name="description" content="Wiki do jogo PEAK: biomas, itens e insígnias para escalar a montanha em equipe.">
+  <title>PEAK, Wiki</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Darumadrop+One&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/site.css}">
   <link rel="stylesheet" th:href="@{/css/item-dialog.css}">
+  <link rel="stylesheet" th:href="@{/css/spore-tokens.css}">
+  <link rel="stylesheet" th:href="@{/css/home-spore.css}">
 </head>
-<body>
-  <div th:replace="~{fragments/header :: siteHeader}"></div>
+<body class="home-spore">
+  <div th:replace="~{fragments/spore-header :: sporeHeader}"></div>
 
   <main class="home-main d-flex flex-column align-items-center">
-    <h1 class="home-title">WIKI DO PEAK</h1>
-    <button class="biomes-card" id="biomas" type="button" aria-label="Explore os biomas" aria-haspopup="dialog" aria-controls="biome-dialog">
-      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/c6791f0f1b7b29f6304e283ac7a2cabc27c7eb0d/capsule_616x353.jpg?t=1792684718" alt="Arte oficial de PEAK com uma paisagem de montanha">
-      <h2 class="biomes-title">Biomas</h2>
-    </button>
+    <section class="poster" aria-label="Biomas">
+      <h1 class="home-title">WIKI DO PEAK</h1>
+      <button class="biomes-card" id="biomas" type="button" aria-label="Explore os biomas" aria-haspopup="dialog" aria-controls="biome-dialog">
+        <img th:src="@{/images/home/card-biomes.webp}" alt="Arte oficial de PEAK com uma paisagem de montanha" width="1000" height="555">
+        <h2 class="biomes-title">Biomas</h2>
+      </button>
+    </section>
 
     <dialog class="biome-dialog" id="biome-dialog" aria-labelledby="biome-dialog-title">
       <div class="biome-dialog-frame">
@@ -139,6 +144,7 @@
       </div>
     </section>
 
+    <div class="steam-slot">
     <a href="https://store.steampowered.com/app/3527290/PEAK/" class="steam-promo-btn" target="_blank" rel="noopener noreferrer">
         <div class="steam-promo-text">
             Visite também a<br>página na Steam
@@ -147,6 +153,7 @@
             <img th:src="@{/images/home/steam-icon.webp}" alt="Logo da Steam" class="steam-logo-img">
         </div>
     </a>
+    </div>
   </main>
 
   <div th:replace="~{fragments/footer :: siteFooter}"></div>

@@ -3,6 +3,41 @@
   "mode": "redesign",
   "depth": "full",
   "scope": "page",
+  "shape": "Photographic",
+  "theme": "spore",
+  "axes": "dark/roman-serif/warm",
+  "hero": "Stage",
+  "nav": "floating pill, centred",
+  "footer": "kept as is",
+  "imagery": "photographs",
+  "photos": [
+   "home/card-biomes.webp",
+   "home/card-items.webp",
+   "home/card-badges.webp",
+   "home/about-game.webp"
+  ],
+  "entry": "home-v3",
+  "fingerprint": "home-spore",
+  "sections": [
+   "bar",
+   "biomas",
+   "itens+insignias list",
+   "sobre",
+   "steam",
+   "footer"
+  ],
+  "signature": "the Biomas photograph bleeding off the right edge with one pink pill",
+  "waived": [
+   "12",
+   "7b"
+  ],
+  "prompt": "home of a game wiki about climbing a wild mountain in a team",
+  "date": "2026-11-27"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
   "shape": "Settled",
   "theme": "hum",
   "axes": "light/rounded-sans/chromatic-yellow",
