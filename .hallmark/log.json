@@ -1,0 +1,30 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "Settled",
+  "theme": "hum",
+  "axes": "light/rounded-sans/chromatic-yellow",
+  "hero": "Settled",
+  "nav": "minimal brand bar",
+  "footer": "ink tear with paper tags",
+  "imagery": "photographs",
+  "photos": [
+   "biomes/pico.webp"
+  ],
+  "entry": "login",
+  "fingerprint": "login-hum",
+  "sections": [
+   "bar",
+   "sheet+photo",
+   "crew"
+  ],
+  "signature": "pressed card-stock Entrar button on a torn sheet beside the summit",
+  "waived": [
+   "F4"
+  ],
+  "prompt": "login page for a game wiki about climbing mountain biomes, community of players",
+  "date": "2026-11-26"
+ }
+]

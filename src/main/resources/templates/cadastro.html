@@ -3,81 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111312">
-  <title>PEAK — Cadastro</title>
+  <meta name="theme-color" content="#f4efe0">
+  <meta name="description" content="Crie sua conta na PEAK Wiki e comece a subir.">
+  <title>PEAK, Cadastro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Darumadrop+One&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/site.css}">
-  <link rel="stylesheet" th:href="@{/css/login.css}">
-  <link rel="stylesheet" th:href="@{/css/auth.css}">
+  <link rel="stylesheet" th:href="@{/css/login-tokens.css}">
+  <link rel="stylesheet" th:href="@{/css/login-base.css}">
+  <link rel="stylesheet" th:href="@{/css/login-hum.css}">
 </head>
 <body class="login-page">
-  <div th:replace="~{fragments/header :: siteHeader}"></div>
+  <div th:replace="~{fragments/login-header :: loginHeader}"></div>
 
-  <main class="login-shell">
-    <section class="login-frame" aria-label="Página de Cadastro PEAK">
-      <aside class="login-visual" aria-hidden="true">
-        <div class="login-visual__badge">PEAK</div>
-        <div class="login-visual__content">
-          <p class="eyebrow">Novo escalador</p>
-          <h2>Crie sua conta e comece a subir.</h2>
-        </div>
-        <div class="login-visual__mountain">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </aside>
+  <main class="login-main login-main--flip">
+    <section class="login-sheet" aria-labelledby="register-title">
+      <h1 id="register-title">Criar conta</h1>
+      <p class="login-lead">Novo escalador</p>
 
-      <section class="login-card" aria-labelledby="register-title">
-        <div class="login-card__header">
-          <span class="login-kicker">Cadastro</span>
-          <h1 id="register-title">Criar conta</h1>
-        </div>
+      <form class="login-form" id="register-form" method="post" action="#" novalidate>
+        <label class="field" for="username">
+          <span>Nome de usuário</span>
+          <input id="username" name="username" type="text" placeholder="Como você quer ser chamado" autocomplete="username" minlength="3" required>
+        </label>
 
-        <form class="login-form" id="register-form" method="post" action="#" novalidate>
-          <label class="field" for="username">
-            <span>Nome de usuário</span>
-            <input id="username" name="username" type="text" placeholder="Como você quer ser chamado" autocomplete="username" minlength="3" required>
+        <label class="field" for="email">
+          <span>E-mail</span>
+          <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+        </label>
+
+        <div class="field-row">
+          <label class="field" for="password">
+            <span>Senha</span>
+            <input id="password" name="password" type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" required>
           </label>
 
-          <label class="field" for="email">
-            <span>E-mail</span>
-            <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+          <label class="field" for="password-confirm">
+            <span>Confirmar senha</span>
+            <input id="password-confirm" name="passwordConfirm" type="password" placeholder="Repita a senha" autocomplete="new-password" minlength="8" required>
           </label>
+        </div>
 
-          <div class="field-row">
-            <label class="field" for="password">
-              <span>Senha</span>
-              <input id="password" name="password" type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" required>
-            </label>
+        <p class="form-message" id="register-message" role="alert" hidden></p>
 
-            <label class="field" for="password-confirm">
-              <span>Confirmar senha</span>
-              <input id="password-confirm" name="passwordConfirm" type="password" placeholder="Repita a senha" autocomplete="new-password" minlength="8" required>
-            </label>
-          </div>
+        <label class="remember-me terms" for="terms">
+          <input id="terms" name="terms" type="checkbox" required>
+          <span>Li e aceito os termos de uso e a política de privacidade</span>
+        </label>
 
-          <p class="form-message" id="register-message" role="alert" hidden></p>
+        <button class="btn btn--primary" type="submit">Criar conta</button>
+        <a class="btn btn--quiet" th:href="@{/login}">Já tenho conta</a>
+      </form>
 
-          <label class="remember-me terms" for="terms">
-            <input id="terms" name="terms" type="checkbox" required>
-            <span>Li e aceito os termos de uso e a política de privacidade</span>
-          </label>
-
-          <button class="primary-button" type="submit">Criar conta</button>
-          <a class="secondary-button" th:href="@{/login}">Já tenho conta</a>
-        </form>
-
-        <p class="login-footer">
-          Esqueceu a senha?
-          <a th:href="@{/recuperar-senha}">Recuperar acesso</a>
-        </p>
-      </section>
+      <p class="login-switch">
+        Esqueceu a senha?
+        <a th:href="@{/recuperar-senha}">Recuperar acesso</a>
+      </p>
     </section>
+
+    <figure class="login-photo">
+      <img th:src="@{/images/biomes/raizes.webp}" alt="Uma cachoeira entre rochas cobertas de musgo, com cogumelos gigantes ao fundo" width="900" height="506">
+      <figcaption>Crie sua conta e comece a subir.</figcaption>
+    </figure>
   </main>
+
+  <div th:replace="~{fragments/footer :: siteFooter}"></div>
 
   <script>
     (function () {
