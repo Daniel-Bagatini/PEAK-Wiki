@@ -1,6 +1,8 @@
 :root {
   --community-paper: #efefef;
   --community-dark: #272727;
+  /* Mesma largura de conteúdo da página de login (container de 1440px com margens de 64px). */
+  --community-largura: 1312px;
 }
 
 .community-page {
@@ -13,7 +15,7 @@
   flex: 1;
   width: 100%;
   min-height: 760px;
-  padding: 36px 18px 0;
+  padding: 36px clamp(18px, 4.5vw, 64px) 0;
 }
 
 .community-main > h1 {
@@ -33,8 +35,8 @@
 .community-feed {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 170px;
-  width: min(760px, 100%);
+  grid-template-columns: minmax(0, 1fr);
+  width: min(var(--community-largura), 100%);
   margin: 0 auto;
   gap: 18px 12px;
 }
@@ -50,17 +52,10 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
-/* A postagem mais recente fica ao lado do desafio; as outras ocupam a largura toda. */
+/* A postagem mais recente fica no topo, ocupando a largura toda. */
 .community-post,
 .community-empty {
   grid-column: 1 / -1;
-}
-
-.community-post--destaque,
-.community-empty {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: start;
 }
 
 .post-avatar-initial {
@@ -85,7 +80,7 @@
 
 .community-actions {
   display: flex;
-  width: min(760px, 100%);
+  width: min(var(--community-largura), 100%);
   justify-content: flex-end;
   margin: 0 auto 14px;
 }
@@ -108,7 +103,7 @@
 }
 
 .community-flash {
-  width: min(760px, 100%);
+  width: min(var(--community-largura), 100%);
   margin: 0 auto 14px;
   padding: 10px 14px;
   border-radius: 10px;
@@ -215,85 +210,6 @@
   font-size: 1rem;
 }
 
-.community-challenge {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
-  min-height: 226px;
-  overflow: hidden;
-  border-radius: 9px;
-  background: #eeeeef;
-  color: #1b1b1b;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
-}
-
-.challenge-author {
-  display: flex;
-  height: 38px;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 6px;
-  background: #e4e4e4;
-  font-size: 0.72rem;
-}
-
-.challenge-author img {
-  width: 27px;
-  height: 27px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.challenge-tags,
-.challenge-xp {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  padding: 5px;
-  font-size: 0.58rem;
-  text-align: center;
-}
-
-.challenge-tags span {
-  padding: 3px 4px;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  background: #fff;
-}
-
-.challenge-xp {
-  background: #dcdcdc;
-}
-
-.challenge-body {
-  margin: 0;
-  padding: 8px;
-  background: #8c5a53;
-  color: #fff;
-  text-align: center;
-}
-
-.challenge-body h2,
-.challenge-body h3 {
-  margin: 0;
-  font-family: "Darumadrop One", cursive;
-}
-
-.challenge-body h2 {
-  font-size: 0.95rem;
-}
-
-.challenge-body h3 {
-  margin-top: 2px;
-  font-size: 0.72rem;
-}
-
-.challenge-body p {
-  margin: 7px 0 0;
-  font-size: 0.48rem;
-  line-height: 1.25;
-}
-
 .community-post--comum {
   margin-top: 2px;
 }
@@ -318,7 +234,7 @@
   grid-column: 1 / -1;
   width: 78%;
   justify-self: center;
-  margin: -38px auto 28px;
+  margin: 6px auto 28px;
   padding: 10px 14px 8px;
   border-radius: 10px;
   background: rgba(238, 238, 238, 0.94);
@@ -365,8 +281,7 @@
   }
 
   .community-feed {
-    grid-template-columns: minmax(0, 1fr) 110px;
-    gap: 14px 8px;
+    gap: 14px;
   }
 
   .community-post {
@@ -394,47 +309,12 @@
     height: 132px;
   }
 
-  .community-challenge {
-    min-height: 204px;
-  }
-
   .community-participation {
     width: 86%;
   }
 }
 
 @media (max-width: 430px) {
-  .community-post--destaque,
-  .community-empty,
-  .community-challenge {
-    grid-column: 1 / -1;
-  }
-
-  .community-challenge {
-    grid-row: 2;
-  }
-
-  .community-challenge {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    min-height: 116px;
-  }
-
-  .challenge-author {
-    grid-row: 1 / 3;
-    height: 100%;
-  }
-
-  .challenge-tags,
-  .challenge-xp {
-    justify-content: flex-start;
-  }
-
-  .challenge-body {
-    grid-column: 2;
-  }
-
-
   .post-caption {
     font-size: 0.95rem;
   }
@@ -443,4 +323,194 @@
     width: 92%;
     margin-top: 4px;
   }
+}
+
+/* ---------- Foto de perfil: nunca distorce, mesmo em quadros estreitos ---------- */
+.post-author {
+  min-width: 0;
+}
+
+.post-author img,
+.post-avatar-initial {
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+}
+
+.post-author strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Curtir e descurtir ---------- */
+.post-react-form {
+  margin: 0;
+}
+
+.post-react {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border: 1px solid #c4c4c4;
+  border-radius: 999px;
+  background: #fff;
+  color: #1b1b1b;
+  font-size: 0.85rem;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.post-react:hover,
+.post-react:focus-visible {
+  border-color: #b06cb8;
+  background: #f6e9f7;
+}
+
+.post-react:active {
+  transform: scale(0.94);
+}
+
+.post-react:disabled {
+  opacity: 0.7;
+}
+
+.post-react--pulso {
+  animation: post-react-pulso 0.35s ease-out;
+}
+
+@keyframes post-react-pulso {
+  40% {
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-react,
+  .post-react--pulso {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ---------- Fotos sempre inteiras ----------
+   --proporcao (largura ÷ altura da foto) vem do servidor; para imagens antigas sem esse dado,
+   o comunidade.js preenche quando a foto carrega. A foto nunca é cortada nem esticada. */
+.community-post--com-foto .post-photo {
+  /* A foto tem no máximo 520px de altura. Se o quadro for mais largo que ela, a foto fica
+     centralizada, com o fundo do próprio quadro dos lados (sem faixas escuras). */
+  align-self: center;
+  width: calc(100% - 16px);
+  max-width: calc(520px * var(--proporcao));
+  height: auto;
+  margin: 8px auto;
+  aspect-ratio: var(--proporcao, auto);
+  max-height: 520px;
+  background: #1d1f22;
+}
+
+.community-post--com-foto .post-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+/* ---------- Postagens em quadros de HQ ----------
+   As postagens formam uma página de quadrinhos sem padrão fixo:
+   cada quadro ganha a largura que a sua foto pede (foto larga → quadro largo, foto em pé → quadro
+   estreito) e as linhas se completam sozinhas. Assim as fotos de uma mesma linha ficam quase da
+   mesma altura e aparecem inteiras. Quando entra uma postagem nova, as linhas se refazem.
+   Postagens só com texto usam uma proporção média. */
+.community-comic {
+  --altura-base: 230px;
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  gap: 14px;
+}
+
+.community-comic > .community-post {
+  --proporcao-quadro: var(--proporcao, 1.4);
+  display: flex;
+  flex: var(--proporcao-quadro) 1 calc(var(--proporcao-quadro) * var(--altura-base));
+  flex-direction: column;
+  min-width: 210px;
+  margin: 0;
+  border: 3px solid #111;
+  border-radius: 14px;
+}
+
+.community-comic .post-header {
+  border-radius: 11px 11px 0 0;
+}
+
+/* Sem foto, o rodapé desce para o fim do quadro. */
+.community-comic .post-footer {
+  margin-top: auto;
+}
+
+/* Mosaico montado pelo comunidade.js: ele calcula a posição e o tamanho de cada quadro. */
+.community-comic--mosaico {
+  display: block;
+  position: relative;
+}
+
+.community-comic--mosaico > .community-post {
+  position: absolute;
+  min-width: 0;
+}
+
+/* Quando o quadro estica para fechar um vão, a foto fica no meio do espaço que sobrou. */
+.community-comic--mosaico > .community-post--com-foto::before,
+.community-comic--mosaico > .community-post--com-foto::after {
+  content: "";
+  flex: 1 1 0;
+}
+
+.community-comic--mosaico > .community-post--com-foto > .post-header {
+  order: 0;
+}
+
+.community-comic--mosaico > .community-post--com-foto > .post-caption {
+  order: 1;
+}
+
+.community-comic--mosaico > .community-post--com-foto::before {
+  order: 2;
+}
+
+.community-comic--mosaico > .community-post--com-foto > .post-photo {
+  flex-shrink: 0;
+  order: 3;
+}
+
+.community-comic--mosaico > .community-post--com-foto::after {
+  order: 4;
+}
+
+.community-comic--mosaico > .community-post--com-foto > .post-footer {
+  order: 5;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .community-comic {
+    gap: 12px;
+  }
+
+  /* Em telas pequenas os quadros ficam um embaixo do outro, cada foto inteira na largura toda. */
+  .community-comic > .community-post {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+}
+
+/* Textos curtos (até 40 caracteres) ficam com a fonte um pouco maior, para preencher mais o quadro. */
+.post-caption--curta {
+  font-size: 1.4rem;
+  line-height: 1.2;
 }

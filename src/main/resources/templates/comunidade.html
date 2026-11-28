@@ -26,64 +26,17 @@
     </div>
 
     <section class="community-feed" aria-label="Publicações da comunidade">
-      <article class="community-post" th:each="post, estado : ${postagens}"
-               th:classappend="${estado.first} ? 'community-post--destaque' : 'community-post--comum'">
-        <div class="post-header">
-          <div class="post-author">
-            <img th:if="${post.avatar}" th:src="@{${post.avatar}}" alt="" aria-hidden="true">
-            <span th:unless="${post.avatar}" class="post-avatar-initial" aria-hidden="true" th:text="${post.inicial}">?</span>
-            <strong th:text="${post.autor}">@autor</strong>
-          </div>
-          <div class="dropdown">
-            <button class="post-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                    data-bs-popper-config='{"strategy":"fixed"}'
-                    aria-label="Opções da publicação">⋮</button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <form th:action="@{/comunidade/postagens/{id}/apagar(id=${post.id})}" method="post"
-                      onsubmit="return confirm('Apagar esta postagem? Isso não pode ser desfeito.');">
-                  <button class="dropdown-item post-delete" type="submit">🗑️ Apagar postagem</button>
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p class="post-caption" th:unless="${estado.first}" th:text="${post.texto}">Texto da postagem</p>
-
-        <div class="post-photo" th:if="${post.imagem}">
-          <img th:src="@{${post.imagem}}" alt="Imagem da publicação">
-        </div>
-
-        <p class="post-comment" th:if="${estado.first}" th:text="${post.texto}">Texto da postagem</p>
-
-        <div class="post-footer">
-          <div class="post-reactions" aria-label="Reações da publicação">
-            <span>👍 <b th:text="${post.curtidas}">0</b></span>
-            <span>👎 <b th:text="${post.descurtidas}">0</b></span>
-          </div>
-          <span class="post-comments">💬 <b th:text="${post.comentarios}">0</b></span>
-        </div>
-      </article>
-
       <p class="community-empty" th:if="${#lists.isEmpty(postagens)}">Ainda não há postagens. Seja o primeiro!</p>
 
-      <aside class="community-challenge">
-        <div class="challenge-author">
-          <img th:src="@{/images/biome-pages/costa/imgImage171.webp}" alt="" aria-hidden="true">
-          <strong>@Popin_?</strong>
-        </div>
-        <div class="challenge-tags">
-          <span>Sem dificuldade</span>
-          <span>Criativo</span>
-        </div>
-        <div class="challenge-xp"><span>🥇 20</span><span>🍫 70</span></div>
-        <section class="challenge-body">
-          <h2>DEV ROCKET</h2>
-          <h3>@qsfqdrov?</h3>
-          <p>Em breve: manchete deste desafio da comunidade.</p>
-        </section>
-      </aside>
+
+      <!-- Todas as postagens, da mais recente para a mais antiga, viram quadros de HQ. Cada quadro ganha o
+           formato da sua foto, e o mosaico se reorganiza sozinho quando entra uma postagem nova
+           (veja .community-comic no comunidade.css e o comunidade.js). -->
+      <div class="community-comic" th:unless="${#lists.isEmpty(postagens)}">
+        <th:block th:each="post : ${postagens}">
+          <article th:replace="~{fragments/postagem :: postagem(${post})}"></article>
+        </th:block>
+      </div>
 
       <div class="community-participation">
         <p>Participe também da comunidade compartilhando uma dica, estratégia ou build que te ajudou a chegar no PICO!!!</p>
@@ -95,5 +48,6 @@
   <div th:replace="~{fragments/footer :: siteFooter}"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/comunidade.js}" defer></script>
 </body>
 </html>
