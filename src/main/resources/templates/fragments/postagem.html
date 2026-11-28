@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+  <!-- Card de uma postagem da Comunidade.
+       --proporcao é largura ÷ altura da foto: o quadro toma esse formato e a foto aparece inteira. -->
+  <article th:fragment="postagem(post)" class="community-post community-post--comum"
+           th:id="|postagem-${post.id}|"
+           th:classappend="${post.imagem != null} ? 'community-post--com-foto'"
+           th:style="${post.imagem != null and post.proporcao != null} ? |--proporcao: ${post.proporcao}|">
+    <div class="post-header">
+      <div class="post-author">
+        <img th:if="${post.avatar}" th:src="@{${post.avatar}}" alt="" aria-hidden="true">
+        <span th:unless="${post.avatar}" class="post-avatar-initial" aria-hidden="true" th:text="${post.inicial}">?</span>
+        <strong th:text="${post.autor}">@autor</strong>
+      </div>
+      <div class="dropdown">
+        <button class="post-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                data-bs-popper-config='{"strategy":"fixed"}'
+                aria-label="Opções da publicação">⋮</button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <form th:action="@{/comunidade/postagens/{id}/apagar(id=${post.id})}" method="post"
+                  onsubmit="return confirm('Apagar esta postagem? Isso não pode ser desfeito.');">
+              <button class="dropdown-item post-delete" type="submit">🗑️ Apagar postagem</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Textos curtos (até 40 caracteres) ganham uma fonte um pouco maior para preencher o quadro. -->
+    <p class="post-caption" th:classappend="${#strings.length(post.texto) <= 40} ? 'post-caption--curta'"
+       th:text="${post.texto}">Texto da postagem</p>
+
+    <div class="post-photo" th:if="${post.imagem}">
+      <img th:src="@{${post.imagem}}" alt="Imagem da publicação" loading="lazy">
+    </div>
+
+    <div class="post-footer">
+      <div class="post-reactions" aria-label="Reações da publicação">
+        <form class="post-react-form" method="post" th:action="@{/comunidade/postagens/{id}/curtir(id=${post.id})}">
+          <button class="post-react" type="submit">
+            <span aria-hidden="true">👍</span><span class="visually-hidden">Curtir, total:</span>
+            <b data-contador="curtidas" th:text="${post.curtidas}">0</b>
+          </button>
+        </form>
+        <form class="post-react-form" method="post" th:action="@{/comunidade/postagens/{id}/descurtir(id=${post.id})}">
+          <button class="post-react" type="submit">
+            <span aria-hidden="true">👎</span><span class="visually-hidden">Descurtir, total:</span>
+            <b data-contador="descurtidas" th:text="${post.descurtidas}">0</b>
+          </button>
+        </form>
+      </div>
+      <span class="post-comments">💬 <b th:text="${post.comentarios}">0</b></span>
+    </div>
+  </article>
+</body>
+</html>

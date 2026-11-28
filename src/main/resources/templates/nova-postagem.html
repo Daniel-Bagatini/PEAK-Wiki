@@ -19,7 +19,8 @@
   <main class="community-main">
     <h1>Nova postagem</h1>
 
-    <form class="new-post-form" th:action="@{/comunidade/nova-postagem}" th:object="${form}" method="post" novalidate>
+    <form class="new-post-form" th:action="@{/comunidade/nova-postagem}" th:object="${form}" method="post"
+          enctype="multipart/form-data" novalidate>
       <div class="new-post-field">
         <label for="autor">Apelido</label>
         <input id="autor" type="text" th:field="*{autor}" placeholder="@seu_apelido"
@@ -37,6 +38,30 @@
         <p class="new-post-error" th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro</p>
       </div>
 
+      <div class="new-post-field">
+        <span class="new-post-label" id="imagem-titulo">Imagem <small>(opcional)</small></span>
+        <label class="new-post-drop" for="imagem" data-area-imagem
+               th:classappend="${#fields.hasErrors('imagem') or param.imagemGrande != null} ? 'is-invalid'">
+          <input id="imagem" name="imagem" type="file" class="visually-hidden"
+                 accept="image/png,image/jpeg,image/webp" aria-describedby="imagem-dica">
+          <span class="new-post-drop-icon" aria-hidden="true">📷</span>
+          <span class="new-post-drop-text">Arraste uma imagem aqui ou <u>clique para escolher</u></span>
+          <span class="new-post-drop-hint" id="imagem-dica">PNG, JPG ou WebP. Ela é reduzida para no máximo 1280×720 (HD).</span>
+        </label>
+
+        <div class="new-post-preview" data-previa hidden>
+          <img alt="Prévia da imagem escolhida" data-previa-img>
+          <div class="new-post-preview-info">
+            <span data-previa-info></span>
+            <button type="button" data-remover-imagem>Remover imagem</button>
+          </div>
+        </div>
+
+        <p class="new-post-error" th:if="${#fields.hasErrors('imagem')}" th:errors="*{imagem}">Erro</p>
+        <p class="new-post-error" th:if="${param.imagemGrande != null}">O arquivo é grande demais. Escolha uma imagem menor.</p>
+        <p class="new-post-error" data-erro-imagem role="alert" hidden></p>
+      </div>
+
       <div class="new-post-actions">
         <a th:href="@{/comunidade}">Cancelar</a>
         <button type="submit">Publicar</button>
@@ -47,5 +72,6 @@
   <div th:replace="~{fragments/footer :: siteFooter}"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script th:src="@{/nova-postagem.js}" defer></script>
 </body>
 </html>

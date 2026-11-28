@@ -82,3 +82,106 @@
   background: #d7a3dc;
   color: #111;
 }
+
+/* ---------- Imagem da postagem ---------- */
+.new-post-label {
+  font-family: "Darumadrop One", cursive;
+  font-size: 1.2rem;
+}
+
+.new-post-label small {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #555;
+}
+
+.new-post-field .new-post-drop {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 22px 16px;
+  border: 2px dashed #9a9a9a;
+  border-radius: 10px;
+  background: #fff;
+  color: #1b1b1b;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.new-post-drop:hover,
+.new-post-drop:focus-within,
+.new-post-drop.is-dragging {
+  border-color: #b06cb8;
+  background: #f6e9f7;
+}
+
+.new-post-drop:focus-within {
+  outline: 3px solid #b06cb8;
+  outline-offset: 2px;
+}
+
+.new-post-field .new-post-drop.is-invalid {
+  border-color: #c0392b;
+}
+
+.new-post-drop.is-busy {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.new-post-drop-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.new-post-drop-text {
+  font-weight: 800;
+}
+
+.new-post-drop-hint {
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.new-post-preview {
+  overflow: hidden;
+  border: 2px solid #bbb;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.new-post-preview img {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  background: #7d8791;
+  object-fit: contain;
+}
+
+.new-post-preview-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.new-post-preview-info button {
+  padding: 4px 10px;
+  border: 1px solid #c0392b;
+  border-radius: 8px;
+  background: #fff;
+  color: #c0392b;
+  font-weight: 800;
+}
+
+.new-post-preview-info button:hover,
+.new-post-preview-info button:focus-visible {
+  background: #fbe3e0;
+}

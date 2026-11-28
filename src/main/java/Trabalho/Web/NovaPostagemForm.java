@@ -1,5 +1,7 @@
 package Trabalho.Web;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -15,6 +17,21 @@ public class NovaPostagemForm {
 	@NotBlank(message = "Escreva alguma coisa para publicar.")
 	@Size(max = Postagem.TEXTO_MAX, message = "O texto pode ter no máximo {max} caracteres.")
 	private String texto;
+
+	/** Imagem opcional. O controller confere o formato e o tamanho (até HD). */
+	private MultipartFile imagem;
+
+	public MultipartFile getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(MultipartFile imagem) {
+		this.imagem = imagem;
+	}
+
+	public boolean temImagem() {
+		return imagem != null && !imagem.isEmpty();
+	}
 
 	public String getAutor() {
 		return autor;
